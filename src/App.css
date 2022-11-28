@@ -27,6 +27,15 @@
 .App-link {
   color: #61dafb;
 }
+.nikaApp{
+  color:red;
+  font-size:20px;
+}
+.wow{
+  color:red;
+  font-size:56px;
+  font-weight: bold;
+}
 
 @keyframes App-logo-spin {
   from {
