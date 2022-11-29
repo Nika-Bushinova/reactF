@@ -24,9 +24,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 .nikaApp{
   color:red;
   font-size:20px;
@@ -36,6 +33,59 @@
   font-size:56px;
   font-weight: bold;
 }
+.app-wrapper{
+  width:1440px;
+  margin:0 auto;
+  display:grid;
+  grid-template-areas: 'header header'
+                      'nav cont';
+  grid-template-columns: 2fr 10fr;
+  grid-template-rows: 100px 1fr;
+  grid-gap: 10px;
+}
+.wrapper__header{
+  display:flex;
+  grid-area: header;
+  background: url('https://progameguides.com/wp-content/uploads/2021/06/T_UI_CID_A_112_Ruckus_Foil.png') 00/90px 100px no-repeat, rgba(11, 112, 228, 0.7);
+}
+.wrapper__header h2{
+  font-size:5rem;
+  margin:0 auto;
+}
+.wrapper__header img{
+  width:200px;
+  height:inherit;
+}
+
+.wrapper__nav{
+  grid-area: nav;
+  background-color: rgba(97,218,251, 0.5);
+  padding:10px;
+}
+.wrapper__content{
+  grid-area: cont;
+
+}
+.main__bg{
+  background:url('https://i.pinimg.com/originals/e2/fb/0b/e2fb0b2ac9b7e82275eacc8c2ee9c846.jpg');
+  width:100%;
+  height:200px;
+}
+.main__info{
+  display:flex;
+  margin:10px 0px;
+  background-color: blanchedalmond;
+  padding:10px;
+}
+.info__img{
+  background: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/rick-and-morty-season-6-image-1668593792.jpg?crop=0.374xw:0.665xh;0.469xw,0.0291xh&resize=640:*')00 /200px 200px no-repeat;
+  width:200px;
+  height:200px
+}
+.info__text{
+
+}
+
 
 @keyframes App-logo-spin {
   from {
