@@ -1,0 +1,15 @@
+.wrapper__nav{
+   grid-area: nav;
+   background-color: rgba(97,218,251, 0.5);
+   padding:10px;
+   font-size: 1.5rem;
+ }
+ .wrapper__nav a{
+  color:#282c34 !important
+ }
+.item{
+  margin:10px 0px
+}
+.active{background: green;
+  transform: scale(1.5);
+}

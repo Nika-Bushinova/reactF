@@ -1,0 +1,38 @@
+
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+    .wrapper__header{
+      grid-area: header;
+      background: url('../../logo.png') 10px 0px/50px 50px no-repeat, rgba(11, 112, 228, 0.7);
+    }
+     
+ .wrapper__header div{
+   margin-left:5%;
+   
+   }
+   .wrapper__header h2{
+     font-size:5rem;
+   margin:0px;
+   line-height:70px;
+   }
+   .item{
+     font-family: 'Libre Baskerville', serif !important;
+   font-family: 'Lora', serif !important;
+   font-family: 'Roboto', sans-serif;
+   font-style: italic;
+   margin:0px;
+   
+   
+   }
+   .wrapper__header img{
+     width:200px;
+     height:inherit;
+   }

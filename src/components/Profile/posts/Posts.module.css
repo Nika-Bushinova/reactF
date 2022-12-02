@@ -1,0 +1,30 @@
+.main__posts{
+  margin:10px;
+}
+.new__post{
+  height:50px;
+}
+h2{
+  line-height: 3rem;
+}
+.item{
+  border-top:1px solid black;
+   margin: 10px;
+display:flex
+ }
+ .image{
+  margin:10px 10px 0px 0px;
+  background: url('../../../img/rick.jpg') 00/50px 50px;
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+ }
+ .image+p{
+  width:95%;
+  margin:10px 0px;
+ 
+ }
+ .button{ color:rgba(11, 112, 228, 0.7);
+
+ }
+ 

@@ -1,3 +1,90 @@
+
+*{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:active {
+  outline: none
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0px; 
+    font-family: 'Libre Baskerville', serif !important;
+  font-family: 'Lora', serif !important;
+  font-family: 'Roboto', sans-serif;
+  color:#282c34
+  
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+
 .App {
   text-align: center;
 }
@@ -7,32 +94,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.nikaApp{
-  color:red;
-  font-size:20px;
-}
-.wow{
-  color:red;
-  font-size:56px;
-  font-weight: bold;
-}
 .app-wrapper{
   width:1440px;
   margin:0 auto;
@@ -42,56 +103,6 @@
   grid-template-columns: 2fr 10fr;
   grid-template-rows: 100px 1fr;
   grid-gap: 10px;
-}
-.wrapper__header{
-  display:flex;
-  grid-area: header;
-  background: url('https://progameguides.com/wp-content/uploads/2021/06/T_UI_CID_A_112_Ruckus_Foil.png') 00/90px 100px no-repeat, rgba(11, 112, 228, 0.7);
-}
-.wrapper__header h2{
-  font-size:5rem;
-  margin:0 auto;
-}
-.wrapper__header img{
-  width:200px;
-  height:inherit;
+  background:white
 }
 
-.wrapper__nav{
-  grid-area: nav;
-  background-color: rgba(97,218,251, 0.5);
-  padding:10px;
-}
-.wrapper__content{
-  grid-area: cont;
-
-}
-.main__bg{
-  background:url('https://i.pinimg.com/originals/e2/fb/0b/e2fb0b2ac9b7e82275eacc8c2ee9c846.jpg');
-  width:100%;
-  height:200px;
-}
-.main__info{
-  display:flex;
-  margin:10px 0px;
-  background-color: blanchedalmond;
-  padding:10px;
-}
-.info__img{
-  background: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/rick-and-morty-season-6-image-1668593792.jpg?crop=0.374xw:0.665xh;0.469xw,0.0291xh&resize=640:*')00 /200px 200px no-repeat;
-  width:200px;
-  height:200px
-}
-.info__text{
-
-}
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
