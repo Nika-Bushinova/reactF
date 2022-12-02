@@ -1,7 +1,7 @@
 import React from 'react';
 import pC from'./Profile.module.css'
 import Posts from './posts/posts';
-let nameProfile='Rick Sanchez'
+export let nameProfile='Rick Sanchez'
 function Profile(){
    return(
       <main className={pC.wrapper__content}>
@@ -13,7 +13,7 @@ function Profile(){
     <li><b>Species</b>: Human (Cyborg)</li>
     <li><b>Age</b>: 70</li>
     <li><b>Statuse</b>: alive</li>
-    <li><b>Occupation</b>: Scientist Inventor Resistance fighter (formerly) Arms dealer[1] Store owner (briefly)[2] Leader of The Council of Ricks (formerly)</li>
+    <li><b>Occupation</b>: Scientist Inventor Resistance fighter, Arms dealer, Store owner, Leader of The Council of Ricks</li>
     <li><b>Place of origin</b>: Earth (Dimension C-137)</li>
   </div>
 </div>
@@ -21,4 +21,5 @@ function Profile(){
 </main>
    )
 }
+
 export default Profile
