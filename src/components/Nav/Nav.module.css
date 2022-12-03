@@ -1,15 +1,23 @@
-.wrapper__nav{
-   grid-area: nav;
-   background-color: rgba(97,218,251, 0.5);
-   padding:10px;
-   font-size: 1.5rem;
- }
- .wrapper__nav a{
-  color:#282c34 !important
- }
-.item{
-  margin:10px 0px
+.wrapper__nav {
+  grid-area: nav;
+  background-color: rgba(97, 218, 251, 0.5);
+  padding: 10px;
+  font-size: 1.5rem;
+  
 }
-.active{background: green;
-  transform: scale(1.5);
+.wrapper__nav a {
+  color: #282c34 !important;
+}
+.item {
+  margin: 20px 10px;
+}
+.item:hover {
+  background-color: aliceblue;
+  transform: scale(1.1);
+}
+.active {
+  color: rgba(11, 112, 228, 0.7) !important
+}
+.item .active {
+  color: rgba(11, 112, 228, 0.7) !important
 }

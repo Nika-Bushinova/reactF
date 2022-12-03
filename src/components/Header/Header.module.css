@@ -18,10 +18,14 @@
    margin-left:5%;
    
    }
+   @keyframes Text{ 30%{color:white};
+  50%{color:blue};
+80%{color:white}}
    .wrapper__header h2{
      font-size:5rem;
    margin:0px;
    line-height:70px;
+   animation: Text 8s infinite ;
    }
    .item{
      font-family: 'Libre Baskerville', serif !important;
