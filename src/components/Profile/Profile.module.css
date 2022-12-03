@@ -16,12 +16,17 @@
    padding:10px;
  }
  .info__img{
-   background: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/rick-and-morty-season-6-image-1668593792.jpg?crop=0.374xw:0.665xh;0.469xw,0.0291xh&resize=640:*')00 /200px 200px no-repeat;
+   
    width:200px;
    min-width:200px;
    height:200px;
    border-radius: 50%;
-   border:1px solid white
+   border:1px solid white;
+   overflow: hidden;
+ }
+ .info__img img{
+  width:200px;
+  height: 200px;
  }
 .item{
  border-top:1px solid black;

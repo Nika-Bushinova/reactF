@@ -24,11 +24,15 @@ display:flex
  
  .image{
   margin:10px 10px 0px 0px;
-  background: url('../../../img/rick.jpg') 00/50px 50px;
   width:50px;
   min-width: 50px;
   height:50px;
   border-radius: 50%;
+  overflow: hidden;
+ }
+ .image img{
+  width:50px;
+  height: 50px;
  }
  .image+p{
   width:95%;
@@ -36,7 +40,8 @@ display:flex
  
  }
  .button{ color:rgba(11, 112, 228, 0.7);
-
+  display: flex;
+  align-items: center;
  }
  textarea{
   display:block;
@@ -44,4 +49,14 @@ display:flex
   margin:0px 10px;
   padding:10px
  }
- 
+ .button div{
+  width:40px;
+  height:40px
+ }
+ .like{
+  width:40px;
+  height:40px;
+ }
+ .countLikes{
+ width:100%
+ }
