@@ -4,12 +4,13 @@ import Posts from './posts/posts';
 import ProfileInfo from './Profile__info';
 export let nameProfile = 'Rick Sanchez'
 
-function Profile() {
+function Profile(props) {
+
    return (
       <main className={pC.wrapper__content}>
          <div className={pC.main__bg}> </div>
          <ProfileInfo />
-         <Posts />
+         <Posts posts={props.arrLikes.arrLikes}/>
       </main>
    )
 }

@@ -1,28 +1,25 @@
 import React from 'react';
-import classes from '../Messages.module.css'
 import DialogItem from '../dialog/Dialogs';
-import { messagesData } from '../../..';
-import { arr } from './../../../index';
-const Message = (props) => {
-   return (
-      <div className={classes.message}>{props.text}</div>
-   )
-}
+import classes from '../Messages.module.css'
+import Message from './Message';
+
 const MessageTitle = (props) => {
-   return <div><img src={props.photo} alt={props.name}></img>Messages</div>
+ 
+   return <div className={classes.center}><div><img src={props.photo} alt={props.name} className={classes.img__message}></img></div>Messages</div>
 }
 const NewMessage=()=>{
    return (
    <div className={classes.new}>New message<textarea></textarea></div>)
 }
 const Messages = (props) => {//add classes
-   let messageArr=messagesData.map((el)=>{return <Message text={el.message} />})
-   let dialogElements =arr.map((el)=>{return <DialogItem name={el.name1} id={el.id} photo={el.photo1} />})
+  
+let dialogElements = props.messagesData.arr.map((el) => { return <DialogItem name={el.name} id={el.id} photo={el.photo} /> })
+let messageArr = props.messagesData.messagesData.map((el) => { return <Message text={el.message} id={el.id} photo={dialogElements[el.id].props.photo}/> })
    return (
       <div className={classes.dialogs}>
          <div className={classes.dialogs__messages}>
-            <MessageTitle />
-           {messageArr}
+            <MessageTitle photo={messageArr[0].props.photo} />
+          {messageArr}
            <NewMessage/>
          </div>
          <div className={classes.dialogs__names}>
