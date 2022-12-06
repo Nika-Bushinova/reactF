@@ -4,7 +4,7 @@ import poopybutthole from '../img/poopybutthole.png'
 import summer from '../img/summer.png'
 import bet from '../img/bet.png'
 import president from '../img/president.png'
-
+import { reRender } from '../render';
 
 let state = {
    profilePage: {
@@ -27,26 +27,42 @@ let state = {
       ,
 
       arr: [
-         { id: 1,name: 'Squanchy',  photo: squanchy },
-         { id: 2,name: 'Birdperson',  photo: birdperson },
-         { id: 3,name: 'Mr.Poopybutthole',  photo: poopybutthole },
-         { id: 4,name: 'Summer',  photo: summer },
-         { id: 5,name: 'Bet',  photo: bet },
-         { id: 6,name: 'The_President',  photo: president }
+         { id: 1, name: 'Squanchy', photo: squanchy },
+         { id: 2, name: 'Birdperson', photo: birdperson },
+         { id: 3, name: 'Mr.Poopybutthole', photo: poopybutthole },
+         { id: 4, name: 'Summer', photo: summer },
+         { id: 5, name: 'Bet', photo: bet },
+         { id: 6, name: 'The_President', photo: president }
       ],
    },
-   sideBar:{
-      nav:[
-      {to:'/profile', name:'Profile', id:'1'},
-      {to:'/messages', name:'Messages', id:'2'},
-      {to:'/news', name:'News', id:'3'},
-      {to:'/music', name:'Music', id:'4'},
-      {to:'/settings', name:'Settings', id:'5'},
-      {to:'/friends', name:'Friends', id:'6'}
-   ]
+   sideBar: {
+      nav: [
+         { to: '/profile', name: 'Profile', id: '1' },
+         { to: '/messages', name: 'Messages', id: '2' },
+         { to: '/news', name: 'News', id: '3' },
+         { to: '/music', name: 'Music', id: '4' },
+         { to: '/settings', name: 'Settings', id: '5' },
+         { to: '/friends', name: 'Friends', id: '6' }
+      ]
    }
 }
 
+
+export let addPostF = (postMessage) => {
+   let idNewPost=state.profilePage.arrLikes.length+1
+   let newPost = {
+      id: idNewPost, likeCounts:'0', message: postMessage
+   };
+   state.profilePage.arrLikes.push(newPost);
+   reRender(state)
+}
+
+export let addLikeF=(id,likes)=>{
+ likes=parseInt(likes)+1
+  state.profilePage.arrLikes[id-1].likeCounts=likes
+
+   reRender(state)
+}
 
 
 export default state

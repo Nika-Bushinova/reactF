@@ -2,14 +2,17 @@ import React from 'react';
 import Post from './post'
 import classes from'./Posts.module.css'
 
+
 function Posts(props){
-let postArr=props.posts.map((el)=>{return <Post likeCounts={el.likeCounts} message={el.message}/> })
+let postArr=props.posts.map((el)=>{return <Post likeCounts={el.likeCounts} message={el.message} id={el.id} addLike={props.addLike}/> })
 
 let newPostElement=React.createRef()
+
 let addPost=()=>{
 let text=newPostElement.current.value;
-alert(text)
-}
+props.addPostF(text)
+newPostElement.current.value=' '
+} 
 return(<div className={classes.main__posts}>
    <h2>My posts</h2>
    <div className={classes.main__news}>
