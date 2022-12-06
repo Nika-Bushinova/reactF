@@ -17,7 +17,7 @@ function App(props) {
 <Nav point={props.appState.sideBar}/>
 <div className='wrapper__content'>
 <Routes>
-<Route path='/profile' element={<Profile arrLikes={props.appState.profilePage}/>}/>
+<Route path='/profile' element={<Profile arrLikes={props.appState.profilePage} addPostF={props.addPostF} addLike={props.addLike}/>}/>
 <Route path='/messages/*' element={<Messages messages={props.appState.dialogsPage} messagesData={props.appState.dialogsPage} /* messageArr={props.messageArr} dialogElements={props.dialogElements} *//>}/>
 <Route path='/news' element={<News />}/>
 <Route path='/music' element={<Music />}/>

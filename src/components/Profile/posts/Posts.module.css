@@ -9,6 +9,7 @@
   background: rgba(11, 112, 228, 0.7);
   width:50px;
   border-radius: 10%;
+  cursor:pointer
 }
 .new__post p{
   margin:10px;
@@ -42,6 +43,7 @@ display:flex
  .button{ color:rgba(11, 112, 228, 0.7);
   display: flex;
   align-items: center;
+
  }
  textarea{
   display:block;
@@ -51,12 +53,15 @@ display:flex
  }
  .button div{
   width:40px;
-  height:40px
+  height:40px;
+
  }
  .like{
   width:40px;
   height:40px;
+  
  }
+
  .countLikes{
  width:100%
  }
