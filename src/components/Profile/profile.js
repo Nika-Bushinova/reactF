@@ -5,11 +5,12 @@ import ProfileInfo from './Profile__info';
 export let nameProfile = 'Rick Sanchez'
 
 function Profile(props) {
+   console.log('profile',props)
    return (
       <main className={pC.wrapper__content}>
          <div className={pC.main__bg}> </div>
          <ProfileInfo />
-         <Posts posts={props.arrLikes.arrLikes} addPostF={props.addPostF} addLike={props.addLike}/>
+         <Posts posts={props.profilePage.arrLikes} addPostF={props.addPostF} addLike={props.addLike} newText={props.profilePage.newText} updNewPostText={props.updNewPostText}/>
       </main>
    )
 }

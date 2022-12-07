@@ -2,18 +2,16 @@ import React from 'react';
 import classes from'./Posts.module.css'
 import { nameProfile } from './../Profile';
 import like from './../../../img/heart.svg'
-import { photo2 } from '../Profile__info';
+import { photoProfile } from '../Profile__info';
 
 function Post(props){
-console.log(props.likeCounts)
   let likeElement=React.createRef()
   let likeCountF=()=>{
    let count=props.likeCounts
-   console.log(count)
    props.addLike(props.id,count)
   }
    return(     <div className={classes.item}>
-      <div className ={classes.image}><img src={photo2} alt='mini avatar'></img></div>
+      <div className ={classes.image}><img src={photoProfile} alt='mini avatar'></img></div>
       <div>
       <p>{nameProfile}</p>
       <p>{props.message}</p>

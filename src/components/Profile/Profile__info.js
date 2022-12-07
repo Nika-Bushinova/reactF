@@ -2,7 +2,7 @@ import React from 'react';
 import pC from './Profile.module.css'
 import photo from './../../img/rick.jpg'
 import { nameProfile } from './Profile';
-export let photo2 = photo
+export let photoProfile = photo
 const ProfileInfo = () => {
    return (<div className={pC.main__info}>
       <div className={pC.info__img}><img src={photo} alt='photo'></img></div>
