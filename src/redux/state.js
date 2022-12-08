@@ -7,6 +7,7 @@ import president from '../img/president.png'
 
 import { photoProfile } from './../components/Profile/Profile__info';
 import { nameProfile } from './../components/Profile/Profile';
+import { Action } from '@remix-run/router'
 
 let store={
    _state:{
@@ -61,6 +62,7 @@ let store={
       return this._state
    },
    addPostF: function(){
+
       let idNewPost=this._state.profilePage.arrLikes.length+1;
       let newPost = {
          id: idNewPost, likeCounts:'0', message: this._state.profilePage.newText
@@ -75,6 +77,7 @@ let store={
       this._callSubscriber(this._state);
    },
    addMessage:function(addNewMessage){
+      console.log('state', this._state)
       let idNewMessage=this._state.dialogsPage.messagesData.length+1;
       let newMessage={
          id:idNewMessage, idM:0, message:addNewMessage, photo:photoProfile
@@ -93,6 +96,20 @@ let store={
        this._state.profilePage.arrLikes[id-1].likeCounts=likes
      
        this._callSubscriber(this._state)
+     },
+     dispatch(action){
+   if(action.type==='Add-POST'){
+      let idNewPost=this._state.profilePage.arrLikes.length+1;
+      let newPost = {
+         id: idNewPost, likeCounts:'0', message: this._state.profilePage.newText
+      };
+     this._state.profilePage.arrLikes.push(newPost);
+      this._state.profilePage.newText=' '
+      this._callSubscriber(this._state);
+   }else if (action.type==='UPDATE-NEW-POST-TEXT'){
+      this._state.profilePage.newText=action.newTexttext;
+      this._callSubscriber(this._state);
+   }
      }
 }
 
