@@ -11,7 +11,7 @@ let reRender = (state) => {
    root.render(
      <React.StrictMode>
  
-       <App appState={store.getState()} addPostF={store.addPostF} addLike={store.addLikeF} addMessage={store.addMessage} />
+       <App appState={store.getState()} dispatch={store.dispatch.bind(store)}addPostF={store.addPostF} addLike={store.addLikeF} addMessage={store.addMessage.bind(store)} />
  
      </React.StrictMode>
  
