@@ -8,7 +8,8 @@ import president from '../img/president.png'
 import { photoProfile } from './../components/Profile/Profile__info';
 import { nameProfile } from './../components/Profile/Profile';
 import { Action } from '@remix-run/router'
-
+const addPost='ADD-POST'
+const upDateNewPostText='UPDATE-NEW-POST-TEXT'
 let store={
    _state:{
       profilePage: {
@@ -61,21 +62,7 @@ let store={
    getState:function(){
       return this._state
    },
-   addPostF: function(){
 
-      let idNewPost=this._state.profilePage.arrLikes.length+1;
-      let newPost = {
-         id: idNewPost, likeCounts:'0', message: this._state.profilePage.newText
-      };
-     this._state.profilePage.arrLikes.push(newPost);
-      this._state.profilePage.newText=' '
-      this._callSubscriber(this._state);
-   },
-   updNewPostText:function(newTexttext){
-     // debugger
-      this._state.profilePage.newText=newTexttext;
-      this._callSubscriber(this._state);
-   },
    addMessage:function(addNewMessage){
       console.log('state', this._state)
       let idNewMessage=this._state.dialogsPage.messagesData.length+1;
@@ -98,7 +85,7 @@ let store={
        this._callSubscriber(this._state)
      },
      dispatch(action){
-   if(action.type==='Add-POST'){
+   if(action.type==='ADD-POST'){
       let idNewPost=this._state.profilePage.arrLikes.length+1;
       let newPost = {
          id: idNewPost, likeCounts:'0', message: this._state.profilePage.newText
@@ -107,10 +94,28 @@ let store={
       this._state.profilePage.newText=' '
       this._callSubscriber(this._state);
    }else if (action.type==='UPDATE-NEW-POST-TEXT'){
+
       this._state.profilePage.newText=action.newTexttext;
       this._callSubscriber(this._state);
+   }else if(action.type==='ADD-LIKEF'){
+      action.likes=parseInt(action.likes)+1
+       this._state.profilePage.arrLikes[this._state.profilePage.arrLikes.id-1].likeCounts=action.likes
+     
+       this._callSubscriber(this._state)
+     
    }
      }
+}
+export const addPostActionCreater=()=>{
+   return {
+      type:addPost
+   }
+}
+
+export const updTextActionCreater=(text)=>{
+   return {
+      type:upDateNewPostText,newTexttext:text
+   }
 }
 
 /* let reRender=()=>{

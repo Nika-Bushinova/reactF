@@ -19,7 +19,7 @@ console.log('app', props)
 <Nav point={props.appState.sideBar}/>
 <div className='wrapper__content'>
 <Routes>
-<Route path='/profile' element={<Profile profilePage={props.appState.profilePage} addPostF={props.addPostF.bind(store)} addLike={props.addLike.bind(store)} updNewPostText={store.updNewPostText.bind(store)}/>}/>
+<Route path='/profile' element={<Profile profilePage={props.appState.profilePage}dispatch={props.dispatch.bind(store)}  addLike={props.addLike.bind(store)} /*  updNewPostText={store.updNewPostText.bind(store)} *//>}/>
 <Route path='/messages/*' element={<Messages messages={props.appState.dialogsPage} messagesData={props.appState.dialogsPage} addMessage={store.addMessage.bind(store)} updMessage={store.updMessage.bind(store)}/* messageArr={props.messageArr} dialogElements={props.dialogElements} *//>}/>
 <Route path='/news' element={<News />}/>
 <Route path='/music' element={<Music />}/>
