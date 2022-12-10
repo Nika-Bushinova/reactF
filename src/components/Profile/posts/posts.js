@@ -13,7 +13,7 @@ let newPostElement=React.createRef()
 
 let onPostChange=()=>{
    let text=newPostElement.current.value;
-   let action=updTextActionCreater=(text)
+   let action=updTextActionCreater(text)
    props.dispatch(action) 
 }
 
