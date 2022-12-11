@@ -2,21 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store, { subscribe } from './redux/state';
+import store, { subscribe } from './redux/store';
 
 import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let reRender = (state) => {
-   root.render(
-     <React.StrictMode>
- 
-       <App appState={store.getState()} dispatch={store.dispatch.bind(store)} addLike={store.addLikeF.bind(store)} />
- 
-     </React.StrictMode>
- 
-   );
- }
+  root.render(
+    <React.StrictMode>
+
+      <App appState={store.getState()} dispatch={store.dispatch.bind(store)} />
+
+    </React.StrictMode>
+
+  );
+}
 
 
 reRender(store.getState())

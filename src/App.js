@@ -7,28 +7,28 @@ import Messages from './components/Messages/message/Messages'
 import News from './components/Nav/News';
 import Music from './components/Nav/Music';
 import Settings from './components/Nav/Settings';
-import store from './redux/state';
+import store from './redux/store';
 
 
 function App(props) {
-console.log('app', props)
+  console.log('app', props)
   return (
     <BrowserRouter>
-    <div className="app-wrapper wrapper">
-<Header/>
-<Nav point={props.appState.sideBar}/>
-<div className='wrapper__content'>
-<Routes>
-<Route path='/profile' element={<Profile profilePage={props.appState.profilePage}dispatch={props.dispatch.bind(store)}  addLike={props.addLike.bind(store)} /*  updNewPostText={store.updNewPostText.bind(store)} *//>}/>
-<Route path='/messages/*' element={<Messages messages={props.appState.dialogsPage} dispatch={props.dispatch.bind(store)} messagesData={props.appState.dialogsPage} /* messageArr={props.messageArr} dialogElements={props.dialogElements} *//>}/>
-<Route path='/news' element={<News />}/>
-<Route path='/music' element={<Music />}/>
-<Route path='/settings' element={<Settings />}/>
-</Routes>
-</div>
-    </div>
+      <div className="app-wrapper wrapper">
+        <Header />
+        <Nav point={props.appState.sideBar} />
+        <div className='wrapper__content'>
+          <Routes>
+            <Route path='/profile' element={<Profile profilePage={props.appState.profilePage} dispatch={props.dispatch.bind(store)} />} />
+            <Route path='/messages/*' element={<Messages messages={props.appState.dialogsPage} dispatch={props.dispatch.bind(store)} />} />
+            <Route path='/news' element={<News />} />
+            <Route path='/music' element={<Music />} />
+            <Route path='/settings' element={<Settings />} />
+          </Routes>
+        </div>
+      </div>
     </BrowserRouter>
-    
+
   );
 }
 

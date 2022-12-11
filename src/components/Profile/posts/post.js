@@ -3,13 +3,21 @@ import classes from'./Posts.module.css'
 import { nameProfile } from './../Profile';
 import like from './../../../img/heart.svg'
 import { photoProfile } from '../Profile__info';
+import { addLikeActionCreater } from './../../../redux/profileReducer';
 
 function Post(props){
+  console.log('post',props)
   let likeElement=React.createRef()
   let likeCountF=()=>{
-   let count=props.likeCounts
-   props.addLike(props.id,count)
+    let count=props.likeCounts
+    let id=props.id
+    console.log(id)
+   props.dispatch(addLikeActionCreater(id, count))
   }
+/*   let likeCountF=()=>{
+    let count=props.likeCounts
+    props.addLike(props.id,count)
+   } */
    return(     <div className={classes.item}>
       <div className ={classes.image}><img src={photoProfile} alt='mini avatar'></img></div>
       <div>

@@ -10,7 +10,7 @@ function Profile(props) {
       <main className={pC.wrapper__content}>
          <div className={pC.main__bg}> </div>
          <ProfileInfo />
-         <Posts posts={props.profilePage.arrLikes} dispatch={props.dispatch} addLike={props.addLike}/* addPostF={props.addPostF}  */ newText={props.profilePage.newText} /* updNewPostText={props.updNewPostText} *//>
+         <Posts posts={props.profilePage.arrLikes} dispatch={props.dispatch} addLike={props.addLike} newText={props.profilePage.newText} /* updNewPostText={props.updNewPostText} *//>
       </main>
    )
 }
