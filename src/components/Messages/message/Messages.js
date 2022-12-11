@@ -1,5 +1,5 @@
 import React from 'react';
-import { addMessage, addMessageActionCreater, updTextMessageActionCreater } from '../../../redux/state';
+import { addMessageActionCreater, updTextMessageActionCreater } from '../../../redux/MessageReduser';
 import DialogItem from '../dialog/Dialogs';
 import classes from '../Messages.module.css'
 import Message from './Message';
@@ -26,8 +26,8 @@ const Messages = (props) => {//add classes
       
    }
 
-   let dialogElements = props.messagesData.arr.map((el) => { return <DialogItem name={el.name} id={el.id} photo={el.photo} /> })
-   let messageArr = props.messagesData.messagesData.map((el) => { return <Message text={el.message} id={el.id} photo={dialogElements[el.idM].props.photo} updMessage={props.updMessage}/> })
+   let dialogElements = props.messages.arr.map((el) => { return <DialogItem name={el.name} id={el.id} photo={el.photo} /> })
+   let messageArr = props.messages.messagesData.map((el) => { return <Message text={el.message} id={el.id} photo={dialogElements[el.idM].props.photo} updMessage={props.updMessage}/> })
 
    return (
       <div className={classes.dialogs}>
