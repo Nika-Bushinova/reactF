@@ -8,10 +8,11 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let reRender = (state) => {
+  console.log('state', state)
   root.render(
     <React.StrictMode>
 
-      <App appState={store.getState()} dispatch={store.dispatch.bind(store)} />
+      <App appState={store.getState()} dispatch={store.dispatch.bind(store)} store={store} />
 
     </React.StrictMode>
 

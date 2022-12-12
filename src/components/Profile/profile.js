@@ -1,7 +1,7 @@
 import React from 'react';
 import pC from './Profile.module.css'
-import Posts from './posts/posts';
 import ProfileInfo from './Profile__info';
+import PostsContainer from './posts/postsContainer';
 export let nameProfile = 'Rick Sanchez'
 
 function Profile(props) {
@@ -10,7 +10,7 @@ function Profile(props) {
       <main className={pC.wrapper__content}>
          <div className={pC.main__bg}> </div>
          <ProfileInfo />
-         <Posts posts={props.profilePage.arrLikes} dispatch={props.dispatch} addLike={props.addLike} newText={props.profilePage.newText} /* updNewPostText={props.updNewPostText} *//>
+         <PostsContainer store={props.store} />
       </main>
    )
 }
