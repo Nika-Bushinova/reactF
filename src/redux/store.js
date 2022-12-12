@@ -70,6 +70,7 @@ let store = {
       this._callSubscriber(this._state)
    }, */
    dispatch(action) {
+
       this._state.profilePage = profileReducer(this._state.profilePage, action)
       this._state.dialogsPage = messageReducer(this._state.dialogsPage, action)
       this._state.sideBar = sideBarReducer(this._state.sideBar, action)
