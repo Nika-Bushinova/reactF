@@ -7,9 +7,6 @@ const PostsContainer = (props) => {
    console.log('cont', props)
 
    let state=props.store.getState();
-   
-   /* let postArr=props.posts.map((el)=>{return <Post likeCounts={el.likeCounts} message={el.message} id={el.id} addLike={props.addLike} updNewPostText={props.updNewPostText} dispatch={props.dispatch} /> })
-   let newPostElement=React.createRef() */
    let addPost = () => {
       props.store.dispatch(addPostActionCreater())
    }

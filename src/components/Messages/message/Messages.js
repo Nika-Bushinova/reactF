@@ -1,34 +1,25 @@
 import React from 'react';
-import { addMessageActionCreater, updTextMessageActionCreater } from '../../../redux/MessageReduser';
 import DialogItem from '../dialog/Dialogs';
 import classes from '../Messages.module.css'
 import Message from './Message';
-
 const MessageTitle = (props) => {
-
    return <div className={classes.center}><div><img src={props.photo} alt={props.name} className={classes.img__message}></img></div>Messages</div>
 }
-
-
 const Messages = (props) => {//add classes
    console.log('messages', props)
+   let state = props.messages;
+   let dialogElements = state.arr.map((el) => { return <DialogItem name={el.name} id={el.id} photo={el.photo} /> })
+   let messageArr = state.messagesData.map((el) => { return <Message text={el.message} id={el.id} photo={dialogElements[el.idM].props.photo} updMessage={props.updMessage} /> })
+
    let textMessage = React.createRef()
-
    let createMessage = () => {
-      props.dispatch(addMessageActionCreater())
+      props.sendMessage()
    }
-
-   let onMessageChange=()=>{
+   let onMessageChange = () => {
       let text = textMessage.current.value;
-      let action=updTextMessageActionCreater(text)
-      props.dispatch(action) 
-   //   props.updMessage(text)
-      
+      props.updTextMessageBody(text)
    }
-
-   let dialogElements = props.messages.arr.map((el) => { return <DialogItem name={el.name} id={el.id} photo={el.photo} /> })
-   let messageArr = props.messages.messagesData.map((el) => { return <Message text={el.message} id={el.id} photo={dialogElements[el.idM].props.photo} updMessage={props.updMessage}/> })
-
+ 
    return (
       <div className={classes.dialogs}>
          <div className={classes.dialogs__messages}>
@@ -36,7 +27,7 @@ const Messages = (props) => {//add classes
             {messageArr}
 
             <div className={classes.new}>New message
-               <textarea ref={textMessage} onChange={onMessageChange}/></div>
+               <textarea ref={textMessage} onChange={onMessageChange} value={props.messages.newMessageText}/></div>
             <div onClick={createMessage} >Send</div>
          </div>
          <div className={classes.dialogs__names}>

@@ -75,8 +75,7 @@ let store = {
       this._state.dialogsPage = messageReducer(this._state.dialogsPage, action)
       this._state.sideBar = sideBarReducer(this._state.sideBar, action)
 
-      this._callSubscriber(this.state)
-
+      this._callSubscriber(this._state)
    }
 }
 export default store
