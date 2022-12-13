@@ -16,7 +16,6 @@ let onPostChange=()=>{
 
 let onAddPost=()=>{
    props.addPost()
-
 } 
 return(<div className={classes.main__posts}>
    <h2>My posts</h2>

@@ -32,17 +32,18 @@ export const messageReducer = (state=initialState, action) => {
 
    // eslint-disable-next-line default-case
    switch (action.type) {
-      case upDateNewMessageBody:
-         state.newMessageText = action.newTextM;
-         return state
+
       case addMessage:
          let idNewMessage = state.messagesData.length + 1;
          let newMessage = {
             id: idNewMessage, idM: 0, message: state.newMessageText, photo: state.arr[0].photo
          }
-         state.newMessageText = ' '
          state.messagesData.push(newMessage);
+         state.newMessageText = ''
          return state
+         case upDateNewMessageBody:
+            state.newMessageText = action.newTextM;
+            return state
       default:
          return state
    }
