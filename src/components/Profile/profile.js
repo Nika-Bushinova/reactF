@@ -10,7 +10,7 @@ function Profile(props) {
       <main className={pC.wrapper__content}>
          <div className={pC.main__bg}> </div>
          <ProfileInfo />
-         <PostsContainer store={props.store} />
+         <PostsContainer />
       </main>
    )
 }

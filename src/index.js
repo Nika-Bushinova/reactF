@@ -5,15 +5,16 @@ import reportWebVitals from './reportWebVitals';
 import store, { subscribe } from './redux/store';
 
 import App from './App';
+import StoreContext, { Provider } from './StoreContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let reRender = (state) => {
   console.log('state', state)
   root.render(
     <React.StrictMode>
-
-      <App appState={store.getState()} dispatch={store.dispatch.bind(store)} store={store} />
-
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>
 
   );
