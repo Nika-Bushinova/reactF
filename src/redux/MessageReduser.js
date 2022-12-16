@@ -9,7 +9,7 @@ import { nameProfile } from '../components/Profile/Profile';
 
 const upDateNewMessageBody = 'UPDATE-NEW-MESSAGE';
 const addMessage = 'ADD-MESSAGE';
-let initialState={
+let initialState = {
    messagesData: [
       { id: 1, idM: 1, message: "What's up!", photo: squanchy },
       { id: 2, idM: 2, message: 'Hi', photo: squanchy },
@@ -28,24 +28,31 @@ let initialState={
    { id: 6, name: 'The_President', photo: president }
    ],
 }
-export const messageReducer = (state=initialState, action) => {
+export const messageReducer = (state = initialState, action) => {
 
    // eslint-disable-next-line default-case
    switch (action.type) {
 
-      case addMessage:
-         let idNewMessage = state.messagesData.length + 1;
+      case addMessage:{
+         let stateCopy = { ...state }
+         stateCopy.messagesData = [...state.messagesData]
+         stateCopy.arr = [...state.arr]
+         let idNewMessage = stateCopy.messagesData.length + 1;
          let newMessage = {
-            id: idNewMessage, idM: 0, message: state.newMessageText, photo: state.arr[0].photo
+            id: idNewMessage, idM: 0, message: stateCopy.newMessageText, photo: stateCopy.arr[0].photo
          }
-         state.messagesData.push(newMessage);
-         state.newMessageText = ''
-         return state
-         case upDateNewMessageBody:
-            state.newMessageText = action.newTextM;
-            return state
+         stateCopy.messagesData.push(newMessage);
+         stateCopy.newMessageText = ''
+         return stateCopy
+      }
+      case upDateNewMessageBody:{
+         let stateCopy = { ...state }
+         stateCopy.newMessageText = action.newTextM;
+         return stateCopy
+      }
       default:
-         return state
+         let stateCopy = { ...state }
+         return stateCopy
    }
 
 }
