@@ -2,7 +2,7 @@
 const addPost = 'ADD-POST'
 const upDateNewPostText = 'UPDATE-NEW-POST-TEXT'
 const addLike = 'ADD-LIKEF'
-let initialState={ 
+let initialState = {
 
    arrLikes: [
       { id: 1, likeCounts: '7000', message: 'What, so everyone’s supposed to sleep every single night now? You realize that nighttime makes up half of all time?' },
@@ -12,27 +12,39 @@ let initialState={
    newText: ' '
 
 }
-const profileReducer = (state=initialState, action) => {
-
+const profileReducer = (state = initialState, action) => {
    switch (action.type) {
-      case addPost:
-         let idNewPost = state.arrLikes.length + 1;
+      case addPost: {
+         let stateCopy = { ...state }
+         stateCopy.arrLikes = [...state.arrLikes]
+         let idNewPost = stateCopy.arrLikes.length + 1;
          let newPost = {
-            id: idNewPost, likeCounts: '0', message: state.newText
+            id: idNewPost,
+            likeCounts: '0',
+            message: stateCopy.newText
          }
-         state.arrLikes.push(newPost);
-         state.newText = ' '
-         return state;
+         stateCopy.arrLikes.push(newPost);
+         stateCopy.newText = ' ';
+         return stateCopy;
+      }
+      case upDateNewPostText: {
+         let stateCopy = { ...state }
+         stateCopy.newText = action.newTexttext;
+         return stateCopy;
+      }
+      case addLike: {
+         let stateCopy = { ...state }
+         stateCopy.arrLikes = [...state.arrLikes]
 
-      case upDateNewPostText:
-         state.newText = action.newTexttext;
-         return state;
-      case addLike:
-         let likes= parseInt(state.arrLikes[action.idLike-1].likeCounts)+1
-         state.arrLikes[action.idLike - 1].likeCounts = likes
-         return state;
+         let likes = parseInt(stateCopy.arrLikes[action.idLike - 1].likeCounts) + 1
+         console.log('likes', stateCopy)
+         stateCopy.arrLikes[action.idLike - 1].likeCounts = likes
+
+         return stateCopy;
+      }
       default:
-         return state
+         let stateCopy = { ...state }
+         return stateCopy
 
    }
 }
@@ -50,8 +62,9 @@ export const updTextActionCreater = (text) => {
 }
 
 export const addLikeActionCreater = (id, count) => {
+   console.log('ttttt')
    return {
-      type: addLike, idLike:id, countLike:count
+      type: addLike, idLike: id, countLike: count
    }
 }
 

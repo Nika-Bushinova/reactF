@@ -20,7 +20,7 @@ function App(props) {
         <Nav point={store.getState().sideBar} />
         <div className='wrapper__content'>
           <Routes>
-            <Route path='/profile' element={<Profile  />} />
+            <Route path='/profile' element={<Profile/>} />
             <Route path='/messages/*' element={<MessagesContainer  />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />

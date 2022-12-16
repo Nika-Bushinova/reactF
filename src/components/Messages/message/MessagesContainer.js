@@ -1,8 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { addMessageActionCreater, updTextMessageActionCreater } from '../../../redux/MessageReduser';
-import StoreContext from '../../../StoreContext';
 import Messages from './Messages';
-const MessagesContainer = (props) => {//add classes
+/* const MessagesContainer = (props) => {//add classes
    console.log('messagesCont', props)
   
    return (
@@ -19,5 +19,25 @@ const MessagesContainer = (props) => {//add classes
       
 }</StoreContext.Consumer>
    )
+} */
+let mapStateToProps=(state)=>{
+   return{
+      state:state,
+      messages:state.dialogsPage
+   }
 }
+
+let mapDispatchToProps=(dispatch)=>{
+
+   return{
+      sendMessage:()=>{
+         dispatch(addMessageActionCreater())
+      },
+      updTextMessageBody:(text)=>{
+         dispatch(updTextMessageActionCreater(text))
+      }
+   
+   }
+}
+const MessagesContainer = connect(mapStateToProps,mapDispatchToProps)(Messages)
 export default MessagesContainer

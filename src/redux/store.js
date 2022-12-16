@@ -33,7 +33,7 @@ let store = {
          newMessageText: ' '
          ,
 
-         arr: [{ id: 0, name: nameProfile, photo: photoProfile },
+         arr: [{ id: 0, name: 'Rick Sanchez', photo: 'Rick Sanchez' },//здесь были переменные nameProfile и photoProfile
          { id: 1, name: 'Squanchy', photo: squanchy },
          { id: 2, name: 'Birdperson', photo: birdperson },
          { id: 3, name: 'Mr.Poopybutthole', photo: poopybutthole },
@@ -54,7 +54,6 @@ let store = {
       }
    },
    _callSubscriber: function () {//Render
-      console.log('y')
    },
    subscribe: function (observer) {
       this._callSubscriber = observer
@@ -74,8 +73,9 @@ let store = {
       this._state.profilePage = profileReducer(this._state.profilePage, action)
       this._state.dialogsPage = messageReducer(this._state.dialogsPage, action)
       this._state.sideBar = sideBarReducer(this._state.sideBar, action)
-
       this._callSubscriber(this._state)
    }
 }
+
+
 export default store
