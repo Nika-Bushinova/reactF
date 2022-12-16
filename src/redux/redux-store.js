@@ -1,15 +1,17 @@
-import { combineReducers, legacy_createStore } from "redux";
+
+import { combineReducers, createStore} from "redux";
 import profileReducer from './profileReducer';
 import { messageReducer } from './MessageReduser';
 import sideBarReducer from './sideBar';
 
 
 let reducers =combineReducers({
-   profileReducer:profileReducer,
-   messageReducer:messageReducer,
-   sideBarReducer:sideBarReducer
+   profilePage:profileReducer,
+   dialogsPage:messageReducer,
+  sideBar:sideBarReducer
 })
-let store=legacy_createStore(reducers)
+let store=createStore(reducers)
+window.store=store
 export default store;
 
 

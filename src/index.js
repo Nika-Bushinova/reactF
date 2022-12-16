@@ -1,28 +1,25 @@
 import React from 'react';
+import store from './redux/redux-store';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store, { subscribe } from './redux/store';
+
 
 import App from './App';
-import StoreContext, { Provider } from './StoreContext';
+import { Provider } from 'react-redux';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let reRender = (state) => {
-  console.log('state', state)
   root.render(
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <App/>
       </Provider>
-    </React.StrictMode>
+    </React.StrictMode>/* document.getElementById('root') */
 
   );
-}
 
 
-reRender(store.getState())
-store.subscribe(reRender)
 
 // If you want to start measuring performance in your app, pass a function
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

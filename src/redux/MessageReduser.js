@@ -19,7 +19,7 @@ let initialState={
    newMessageText: ' '
    ,
 
-   arr: [{ id: 0, name: nameProfile, photo: photoProfile },
+   arr: [{ id: 0, name: 'Rick Sanchez', photo: photoProfile },
    { id: 1, name: 'Squanchy', photo: squanchy },
    { id: 2, name: 'Birdperson', photo: birdperson },
    { id: 3, name: 'Mr.Poopybutthole', photo: poopybutthole },
