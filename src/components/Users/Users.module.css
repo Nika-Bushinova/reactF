@@ -1,0 +1,9 @@
+.users__img{
+   width:100px;
+   height:100px;
+   overflow: hidden;
+}
+.users__img img{
+   max-width:100px;
+   max-height:inherit
+}
