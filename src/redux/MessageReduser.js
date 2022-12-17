@@ -29,30 +29,30 @@ let initialState = {
    ],
 }
 export const messageReducer = (state = initialState, action) => {
-
-   // eslint-disable-next-line default-case
+   let stateCopy;
    switch (action.type) {
+      case addMessage:
 
-      case addMessage:{
-         let stateCopy = { ...state }
-         stateCopy.messagesData = [...state.messagesData]
-         stateCopy.arr = [...state.arr]
-         let idNewMessage = stateCopy.messagesData.length + 1;
-         let newMessage = {
-            id: idNewMessage, idM: 0, message: stateCopy.newMessageText, photo: stateCopy.arr[0].photo
-         }
+         stateCopy = { 
+            ...state,
+            messagesData:[...state.messagesData], 
+            arr:    [...state.arr],
+          }
+          let idNewMessage = stateCopy.messagesData.length + 1;
+          let newMessage = {
+             id: idNewMessage, idM: 0, message: stateCopy.newMessageText, photo: stateCopy.arr[0].photo
+          }
          stateCopy.messagesData.push(newMessage);
          stateCopy.newMessageText = ''
          return stateCopy
-      }
-      case upDateNewMessageBody:{
-         let stateCopy = { ...state }
-         stateCopy.newMessageText = action.newTextM;
-         return stateCopy
-      }
+      
+      case upDateNewMessageBody:
+        return  stateCopy = { 
+            ...state,
+            newMessageText:action.newTextM
+          }    
       default:
-         let stateCopy = { ...state }
-         return stateCopy
+        return stateCopy = { ...state }
    }
 
 }

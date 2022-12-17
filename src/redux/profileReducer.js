@@ -13,10 +13,12 @@ let initialState = {
 
 }
 const profileReducer = (state = initialState, action) => {
+   let stateCopy = { 
+      ...state,
+      arrLikes:[...state.arrLikes]
+    }
    switch (action.type) {
       case addPost: {
-         let stateCopy = { ...state }
-         stateCopy.arrLikes = [...state.arrLikes]
          let idNewPost = stateCopy.arrLikes.length + 1;
          let newPost = {
             id: idNewPost,
@@ -28,22 +30,16 @@ const profileReducer = (state = initialState, action) => {
          return stateCopy;
       }
       case upDateNewPostText: {
-         let stateCopy = { ...state }
          stateCopy.newText = action.newTexttext;
          return stateCopy;
       }
       case addLike: {
-         let stateCopy = { ...state }
-         stateCopy.arrLikes = [...state.arrLikes]
-
          let likes = parseInt(stateCopy.arrLikes[action.idLike - 1].likeCounts) + 1
-         console.log('likes', stateCopy)
          stateCopy.arrLikes[action.idLike - 1].likeCounts = likes
 
          return stateCopy;
       }
       default:
-         let stateCopy = { ...state }
          return stateCopy
 
    }
