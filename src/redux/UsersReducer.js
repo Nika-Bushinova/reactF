@@ -8,9 +8,10 @@ const SET_TOTAL_USERS_COUNT='SET_TOTAL_USERS_COUNT'
 let initialState = {
 
    users: [],
-   pageSize:5,
+   pageSize:20,
    totalUserCount:0,
    currentPage:3,
+   isFetching:true
 }
 const usersReducer = (state = initialState, action) => {
 
@@ -40,9 +41,7 @@ const usersReducer = (state = initialState, action) => {
          }
       }
       case SET_USERS: {
-       /*  if (!state.users.length) {
-            return { ...state, users: [...state.users, ...action.users] }
-         }*/
+
         return { ...state, users: action.users }
 
       }
