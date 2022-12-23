@@ -9,7 +9,6 @@ import Music from './components/Nav/Music';
 import Settings from './components/Nav/Settings';
 import store from './redux/store';
 import MessagesContainer from './components/Messages/message/MessagesContainer';
-import Users from './components/Users/Users';
 import UsersContainer from './components/Users/UsersContainer';
 
 
@@ -22,8 +21,8 @@ function App(props) {
         <Nav point={store.getState().sideBar} />
         <div className='wrapper__content'>
           <Routes>
-            <Route path='/profile' element={<Profile/>} />
-            <Route path='/messages/*' element={<MessagesContainer  />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/messages/*' element={<MessagesContainer />} />
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
