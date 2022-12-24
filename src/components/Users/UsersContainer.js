@@ -1,25 +1,28 @@
 import { connect } from "react-redux";
 import React from "react";
 import axios from "axios";
-import { followActionCreater, setUsersActionCreater, unfollowActionCreater, setCurrentPageActionCreater, setTotalUsersCountActionCreater } from "../../redux/UsersReducer"
+import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, setLoading } from "../../redux/UsersReducer"
 import Users from "./Users";
-import loader from "../../img/loading.svg"
+
+import Preloader from "../common/Preloader/Preloader";
 class UsersContainer extends React.Component {
    componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
+      this.props.setLoading(true)
       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
          .then((response) => {
-            console.log('resp', response)
-            console.log('props', this.props)
-            this.props.set_users(response.data.items)//засунули в state.users itemsы с сервера
+            this.props.setLoading(false)
+            this.props.setUsers(response.data.items)//засунули в state.users itemsы с сервера
             this.props.setTotalUsersCount(response.data.totalCount)//засунули в state totalCounts через totalUserCount
          })
    }
 
    onPageChange = (el) => {
       this.props.setCurrentPage(el)
+      this.props.setLoading(true)
       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
          .then((response) => {
-            this.props.set_users(response.data.items)
+            this.props.setUsers(response.data.items)
+            this.props.setLoading(false)
          })
    }
 
@@ -27,7 +30,7 @@ class UsersContainer extends React.Component {
    render() {
 
       return <>
-      {this.props.isFetching?<img src={loader}/>:null}
+           {this.props.isFetching?<Preloader/>:null}
       <Users totalUserCount={this.props.totalUserCount}
          pageSize={this.props.pageSize}
          currentPage={this.props.currentPage}
@@ -42,7 +45,6 @@ class UsersContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-   console.log(state)
    return {
       users: state.usersPage.users,
       pageSize: state.usersPage.pageSize,
@@ -52,7 +54,7 @@ let mapStateToProps = (state) => {
    }
 }
 
-let mapDispatchToProps = (dispatch) => {
+/* let mapDispatchToProps = (dispatch) => {
    return {
 
       follow: (userId) => {
@@ -69,8 +71,22 @@ let mapDispatchToProps = (dispatch) => {
       },
       setTotalUsersCount: (totalCount) => {
          dispatch(setTotalUsersCountActionCreater(totalCount))
+      },
+      setLoading:(isFetching)=>{
+         dispatch(setLoadingActionCreater(isFetching))
       }
 
    }
+} */
+
+
+
+export default connect(mapStateToProps, {
+   follow,
+unfollow,
+setUsers,
+setCurrentPage,
+setTotalUsersCount,
+setLoading
 }
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+)(UsersContainer)
