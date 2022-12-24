@@ -4,7 +4,6 @@ import classes from'./Posts.module.css'
 
 
 const Posts=(props)=>{
-console.log('posts', props)
 
 let postArr=props.posts.map((el)=>{return <Post likeCounts={el.likeCounts} message={el.message} id={el.id} addLike={props.addLike} updNewPostText={props.upDateNewPostText}  dispatch={props.store.dispatch.bind(props.store)} /> })
 let newPostElement=React.createRef()

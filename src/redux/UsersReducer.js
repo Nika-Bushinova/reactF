@@ -4,6 +4,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE='SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT='SET_TOTAL_USERS_COUNT'
+const LOADING ='LOADING'
 
 let initialState = {
 
@@ -51,37 +52,45 @@ const usersReducer = (state = initialState, action) => {
       case SET_TOTAL_USERS_COUNT:{
          return {...state, totalUserCount:action.count}
       }
+      case LOADING:{
+         return {...state, isFetching:action.isFetching}
+      }
       default:
          return state
 
    }
 }
 
-export const followActionCreater = (id) => {
+export const follow = (id) => {
    return {
       type: FOLLOW, id
    }
 }
 
-export const unfollowActionCreater = (id) => {
+export const unfollow = (id) => {
    return {
       type: UNFOLLOW, id
    }
 }
-export const setUsersActionCreater = (users) => {
+export const setUsers = (users) => {
    return {
       type: SET_USERS, users
    }
 }
-export const setCurrentPageActionCreater = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
    return {
       type: SET_CURRENT_PAGE, currentPage
    }
 }
 
-export const setTotalUsersCountActionCreater=(totalUsersCount)=>{
+export const setTotalUsersCount=(totalUsersCount)=>{
    return{
       type: SET_TOTAL_USERS_COUNT, count:totalUsersCount
+   }
+}
+export const setLoading=(isFetching)=>{
+   return{
+      type:LOADING, isFetching
    }
 }
 

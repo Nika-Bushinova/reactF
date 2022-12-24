@@ -29,7 +29,7 @@ import Posts from './posts';
 } */
 
 let mapStateToProps = (state) => {//запускается каждый раз, когда в state изменения. Формируется новый объект, который сравнивается со старым объектом внутренностями
-console.log('state', state)
+
    return {
       posts: state.profilePage.arrLikes,
       newText: state.profilePage.newText,

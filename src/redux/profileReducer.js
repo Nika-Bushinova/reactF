@@ -2,6 +2,7 @@
 const addPost = 'ADD-POST'
 const upDateNewPostText = 'UPDATE-NEW-POST-TEXT'
 const addLike = 'ADD-LIKEF'
+let SET_USERS_PROFILE = 'SET-USERS-PROFILE'
 let initialState = {
 
    arrLikes: [
@@ -9,38 +10,41 @@ let initialState = {
       { id: 2, likeCounts: '9500', message: "Weddings are basically funerals with cake. If I wanted to watch someone throw their life away, I'd hang out with Jerry all day." },
       { id: 3, likeCounts: '15000', message: "I'm a scientist; because I invent, transform, create, and destroy for a living, and when I don't like something about the world, I change it" }
    ],
-   newText: ' '
+   newText: ' ',
+   profile:null,
 
 }
 const profileReducer = (state = initialState, action) => {
-   let stateCopy = { 
-      ...state,
-      arrLikes:[...state.arrLikes]
-    }
+
    switch (action.type) {
+     
       case addPost: {
-         let idNewPost = stateCopy.arrLikes.length + 1;
+         let idNewPost = state.arrLikes.length + 1;
          let newPost = {
             id: idNewPost,
             likeCounts: '0',
-            message: stateCopy.newText
+            message: state.newText
          }
-         stateCopy.arrLikes.push(newPost);
-         stateCopy.newText = ' ';
-         return stateCopy;
+         state.arrLikes.push(newPost);
+         state.newText = ' ';
+         return state;
       }
       case upDateNewPostText: {
-         stateCopy.newText = action.newTexttext;
-         return stateCopy;
+         state.newText = action.newTexttext;
+         return state;
       }
       case addLike: {
-         let likes = parseInt(stateCopy.arrLikes[action.idLike - 1].likeCounts) + 1
-         stateCopy.arrLikes[action.idLike - 1].likeCounts = likes
+         let likes = parseInt(state.arrLikes[action.idLike - 1].likeCounts) + 1
+         state.arrLikes[action.idLike - 1].likeCounts = likes
 
-         return stateCopy;
+         return state;
+      }
+      case SET_USERS_PROFILE: {
+         console.log('red',action.profile)
+         return {...state, profile:action.profile}
       }
       default:
-         return stateCopy
+         return state
 
    }
 }
@@ -58,9 +62,13 @@ export const updTextActionCreater = (text) => {
 }
 
 export const addLikeActionCreater = (id, count) => {
-   console.log('ttttt')
    return {
       type: addLike, idLike: id, countLike: count
+   }
+}
+export const setUserProfile = (profile) => {
+   return {
+      type: SET_USERS_PROFILE, profile
    }
 }
 

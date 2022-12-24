@@ -3,7 +3,8 @@ import pC from './Profile.module.css'
 import photo from './../../img/rick.jpg'
 import { nameProfile } from './Profile';
 export let photoProfile = photo
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+   console.log('info', props)
    return (<div className={pC.main__info}>
       <div className={pC.info__img}><img src={photo} alt='photo'></img></div>
       <div className={pC.text}>
