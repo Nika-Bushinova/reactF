@@ -8,7 +8,7 @@ import Settings from './components/Nav/Settings';
 import store from './redux/store';
 import MessagesContainer from './components/Messages/message/MessagesContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/Profile_Container';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 
 function App(props) {

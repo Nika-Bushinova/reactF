@@ -11,10 +11,17 @@ let initialState = {
       { id: 3, likeCounts: '15000', message: "I'm a scientist; because I invent, transform, create, and destroy for a living, and when I don't like something about the world, I change it" }
    ],
    newText: ' ',
-   profile:null,
+   profile:null
 
 }
 const profileReducer = (state = initialState, action) => {
+  /*  debugger
+   let state = {
+      ...state,
+    //  arrLikes: [...state.arrLikes],
+     // profile:null,
+
+   }  */
 
    switch (action.type) {
      
@@ -40,8 +47,8 @@ const profileReducer = (state = initialState, action) => {
          return state;
       }
       case SET_USERS_PROFILE: {
-         console.log('red',action.profile)
-         return {...state, profile:action.profile}
+         
+         return {...state, profile:action.profile}//вернем копию стейта и поменяем профайл на профайл, который сидит в экшене
       }
       default:
          return state
@@ -66,7 +73,7 @@ export const addLikeActionCreater = (id, count) => {
       type: addLike, idLike: id, countLike: count
    }
 }
-export const setUserProfile = (profile) => {
+export const setUserProfileAC = (profile) => {
    return {
       type: SET_USERS_PROFILE, profile
    }
