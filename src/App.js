@@ -12,7 +12,6 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 
 
 function App(props) {
-  console.log('app', props)
   return (
     <BrowserRouter>
       <div className="app-wrapper wrapper">
