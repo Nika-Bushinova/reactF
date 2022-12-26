@@ -19,7 +19,8 @@ function App(props) {
         <Nav point={store.getState().sideBar} />
         <div className='wrapper__content'>
           <Routes>
-            <Route path='/profile/*' element={<ProfileContainer />} />
+            <Route path='/profile/:userId' element={<ProfileContainer />} />
+            <Route path='/profile' element={<ProfileContainer />} />
             <Route path='/messages/*' element={<MessagesContainer />} />
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/news' element={<News />} />
