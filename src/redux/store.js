@@ -45,11 +45,12 @@ let store = {
       sideBar: {
          nav: [
             { to: '/profile', name: 'Profile', id: '1' },
+            { to: '/users', name: 'Users', id: '6' },
             { to: '/messages', name: 'Messages', id: '2' },
             { to: '/news', name: 'News', id: '3' },
             { to: '/music', name: 'Music', id: '4' },
             { to: '/settings', name: 'Settings', id: '5' },
-            { to: '/friends', name: 'Friends', id: '6' }
+/*             { to: '/friends', name: 'Friends', id: '6' } */
          ]
       }
    },

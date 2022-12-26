@@ -2,12 +2,24 @@ import React from 'react';
 import Profile from './Profile';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom'
 import setUserProfile, { setUserProfileAC } from '../../redux/profileReducer'
+
 export let nameProfile = 'Rick Sanchez'
+export function withRouter(Children){
+   return(props)=>{
+
+      const match  = {params: useParams()};
+      return <Children {...props}  match = {match}/>
+  }
+} 
+
 class ProfileContainer extends React.Component {
    componentDidMount() {
+      let userId=this.props.match.params.userId
+      if(!userId){userId=9}
       async function getDatas() {
-         let response = await fetch('https://social-network.samuraijs.com/api/1.0/profile/9', {
+         let response = await fetch('https://social-network.samuraijs.com/api/1.0/profile/'+userId, {
             method: 'GET',
             headers: { 'Content-type': 'application/json; charset=utf-8' }
          })
@@ -50,4 +62,5 @@ let mapDispatchToProps = (dispatch) => {
    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer)
+let withUrlDataContainerComponent=withRouter(ProfileContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withUrlDataContainerComponent)

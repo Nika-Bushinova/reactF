@@ -9,19 +9,19 @@ const ProfileInfo = (props) => {
       return (<Preloader/>)
    } 
    return (<div className={pC.main__info}>
-      <div className={pC.info__img}><img src={props.profile.photos.large} alt='photo'></img></div>
+      <div className={pC.info__img}><img src={props.profile.photos.large} alt='Photo'></img></div>
       <div className={pC.text}>
          <ul><h1>{props.profile.fullName}</h1></ul>
          <li><b>About me</b>: {props.profile.aboutMe}</li>
          <li><b>Contacts</b>: <ul>
-            <li><i>Facebook</i>: {props.profile.contacts.facebook}</li>
-            <li><i>Personal website</i>: {props.profile.contacts.website}</li>
-            <li><i>VK</i>: {props.profile.contacts.vk}</li>
-            <li><i>Twitter</i>: {props.profile.contacts.twitter}</li>
-            <li><i>Instagram</i>: {props.profile.contacts.instagram}</li>
-            <li><i>YouTube</i>: {props.profile.contacts.youtube}</li>
-            <li><i>GitHub</i>: {props.profile.contacts.github}</li>
-            <li><i>MainLink</i>: {props.profile.contacts.mainLink}</li>
+            <li> <b>{!props.profile.contacts.facebook!=null?props.profile.contacts.facebook:`Facebook:   ${props.profile.contacts.facebook}`}</b></li>
+            <li><b>{!props.profile.contacts.website?props.profile.contacts.website:`Personal website:   ${props.profile.contacts.website}`}</b></li>
+            <li><b>{!props.profile.contacts.vk?props.profile.contacts.vk:`VK: ${props.profile.contacts.vk}`}</b></li>
+            <li><b>{!props.profile.contacts.twitter?props.profile.contacts.twitter:`Twitter:   ${props.profile.contacts.twitter}`}</b></li>
+            <li><b>{!props.profile.contacts.instagram?props.profile.contacts.instagram:`Instagram:   ${props.profile.contacts.instagram}`}</b></li>
+            <li><b>{!props.profile.contacts.youtube?props.profile.contacts.youtube:`YouTube:   ${props.profile.contacts.youtube}`}</b></li>
+            <li><b>{!props.profile.contacts.github?props.profile.contacts.github:`GitHub:   ${props.profile.contacts.github}`}</b></li>
+            <li><b>{!props.profile.contacts.mainLink?props.profile.contacts.mainLink:`MainLink:   ${props.profile.contacts.mainLink}`}</b></li>
             </ul></li>
          <li><b>Looking For a Job</b>: {props.profile.lookingForAJob?'Yes':'No'}</li>
          {/* <li><b>Occupation</b>: Scientist Inventor Resistance fighter, Arms dealer, Store owner, Leader of The Council of Ricks</li>
