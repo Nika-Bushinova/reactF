@@ -3,7 +3,6 @@ import React from "react";
 import axios from "axios";
 import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, setLoading } from "../../redux/UsersReducer"
 import Users from "./Users";
-
 import Preloader from "../common/Preloader/Preloader";
 class UsersContainer extends React.Component {
    componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
@@ -50,35 +49,9 @@ let mapStateToProps = (state) => {
       pageSize: state.usersPage.pageSize,
       totalUserCount: state.usersPage.totalUserCount,
       currentPage: state.usersPage.currentPage,
-      isFetching:state.usersPage.isFetching
+      isFetching:state.usersPage.isFetching,
    }
 }
-
-/* let mapDispatchToProps = (dispatch) => {
-   return {
-
-      follow: (userId) => {
-         dispatch(followActionCreater(userId))
-      },
-      unfollow: (userId) => {
-         dispatch(unfollowActionCreater(userId))
-      },
-      set_users: (users) => {
-         dispatch(setUsersActionCreater(users))
-      },
-      setCurrentPage: (pageNumber) => {
-         dispatch(setCurrentPageActionCreater(pageNumber))
-      },
-      setTotalUsersCount: (totalCount) => {
-         dispatch(setTotalUsersCountActionCreater(totalCount))
-      },
-      setLoading:(isFetching)=>{
-         dispatch(setLoadingActionCreater(isFetching))
-      }
-
-   }
-} */
-
 
 
 export default connect(mapStateToProps, {

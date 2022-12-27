@@ -6,20 +6,20 @@ import { useParams } from 'react-router-dom'
 import setUserProfile, { setUserProfileAC } from '../../redux/profileReducer'
 
 export let nameProfile = 'Rick Sanchez'
-export function withRouter(Children){
-   return(props)=>{
+export function withRouter(Children) {
+   return (props) => {
 
-      const match  = {params: useParams()};
-      return <Children {...props}  match = {match}/>
-  }
-} 
+      const match = { params: useParams() };
+      return <Children {...props} match={match} />
+   }
+}
 
 class ProfileContainer extends React.Component {
    componentDidMount() {
-      let userId=this.props.match.params.userId
-      if(!userId){userId=9}
+      let userId = this.props.match.params.userId
+      if (!userId) { userId = 9 }
       async function getDatas() {
-         let response = await fetch('https://social-network.samuraijs.com/api/1.0/profile/'+userId, {
+         let response = await fetch('https://social-network.samuraijs.com/api/1.0/profile/' + userId, {
             method: 'GET',
             headers: { 'Content-type': 'application/json; charset=utf-8' }
          })
@@ -41,7 +41,7 @@ class ProfileContainer extends React.Component {
       } */
 
    render() {
-console.log('3')
+      console.log('3')
       return (
 
          <Profile {...this.props} profile={this.props.profile} />
@@ -62,5 +62,5 @@ let mapDispatchToProps = (dispatch) => {
    }
 }
 
-let withUrlDataContainerComponent=withRouter(ProfileContainer);
+let withUrlDataContainerComponent = withRouter(ProfileContainer);
 export default connect(mapStateToProps, mapDispatchToProps)(withUrlDataContainerComponent)

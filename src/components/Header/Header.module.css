@@ -12,6 +12,8 @@
     .wrapper__header{
       grid-area: header;
       background: url('../../logo.png') 10px 0px/50px 50px no-repeat, rgba(11, 112, 228, 0.7);
+      display: flex;
+      justify-content: space-between;
     }
      
  .wrapper__header div{
@@ -39,4 +41,9 @@
    .wrapper__header img{
      width:200px;
      height:inherit;
+   }
+   .loginBlock{
+    text-align: right;
+    margin-right:30px;
+    font-weight:bold
    }

@@ -9,13 +9,17 @@ import store from './redux/store';
 import MessagesContainer from './components/Messages/message/MessagesContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
+
+
+
 
 
 function App(props) {
   return (
     <BrowserRouter>
       <div className="app-wrapper wrapper">
-        <Header />
+        <HeaderContainer/>
         <Nav point={store.getState().sideBar} />
         <div className='wrapper__content'>
           <Routes>
