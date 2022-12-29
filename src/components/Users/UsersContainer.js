@@ -4,11 +4,12 @@ import axios from "axios";
 import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, setLoading } from "../../redux/UsersReducer"
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import { getUsers, getUsersOnPageChange } from "../../API/APIJS";
 class UsersContainer extends React.Component {
    componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
       this.props.setLoading(true)
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials:true})
-         .then((response) => {
+     
+      getUsers(this.props.currentPage, this.props.pageSize) .then((response) => {
             this.props.setLoading(false)
             this.props.setUsers(response.data.items)//засунули в state.users itemsы с сервера
             this.props.setTotalUsersCount(response.data.totalCount)//засунули в state totalCounts через totalUserCount
@@ -18,8 +19,7 @@ class UsersContainer extends React.Component {
    onPageChange = (el) => {
       this.props.setCurrentPage(el)
       this.props.setLoading(true)
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{withCredentials:true})
-         .then((response) => {
+      getUsersOnPageChange(this.props.currentPage, this.props.pageSize).then((response) => {
             this.props.setUsers(response.data.items)
             this.props.setLoading(false)
          })
