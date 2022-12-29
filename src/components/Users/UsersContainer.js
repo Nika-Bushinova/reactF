@@ -7,7 +7,7 @@ import Preloader from "../common/Preloader/Preloader";
 class UsersContainer extends React.Component {
    componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
       this.props.setLoading(true)
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials:true})
          .then((response) => {
             this.props.setLoading(false)
             this.props.setUsers(response.data.items)//засунули в state.users itemsы с сервера
@@ -18,7 +18,7 @@ class UsersContainer extends React.Component {
    onPageChange = (el) => {
       this.props.setCurrentPage(el)
       this.props.setLoading(true)
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{withCredentials:true})
          .then((response) => {
             this.props.setUsers(response.data.items)
             this.props.setLoading(false)
