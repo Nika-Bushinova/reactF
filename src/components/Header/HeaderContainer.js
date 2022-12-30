@@ -3,18 +3,17 @@ import axios from 'axios';
 import Header from "./Header";
 import { connect } from "react-redux";
 import { setAuth } from './../../redux/authReducer';
+import { AuthAPI, getloginF } from "../../API/APIJS";
 
 class HeaderContainer extends React.Component{
    componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
 
-      axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{withCredentials:true})
-         .then((response) => {
-            if( response.data.resultCode===0){
-               let {id, email, login}=response.data.data
+      AuthAPI.getloginF()
+         .then((data) => {
+            if( data.resultCode===0){
+               let {id, email, login}=data.data
                 this.props.setAuth(id, email, login)
-            }
-
-         
+            }         
          })
    }
    render(){

@@ -5,6 +5,7 @@ const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE='SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT='SET_TOTAL_USERS_COUNT'
 const LOADING ='LOADING'
+const TOGGLE_FOLLOWING_PROGESS='TOGGLE_FOLLOWING_PROGESS'
 
 let initialState = {
 
@@ -12,8 +13,10 @@ let initialState = {
    pageSize:20,
    totalUserCount:0,
    currentPage:3,
-   isFetching:true
+   isFetching:true,
+   followingInProgress:[]
 }
+
 const usersReducer = (state = initialState, action) => {
 
    switch (action.type) {
@@ -55,6 +58,13 @@ const usersReducer = (state = initialState, action) => {
       case LOADING:{
          return {...state, isFetching:action.isFetching}
       }
+      case TOGGLE_FOLLOWING_PROGESS:{
+         return {
+            ...state, 
+            followingInProgress:action.progressToggle
+            ?[...state.followingInProgress,action.id]
+            :state.followingInProgress.filter((el)=>el!==action.id)}
+      }
       default:
          return state
 
@@ -93,6 +103,10 @@ export const setLoading=(isFetching)=>{
       type:LOADING, isFetching
    }
 }
-
+export const toggleProgress=(progressToggle,id)=>{
+   return {
+      type:TOGGLE_FOLLOWING_PROGESS, progressToggle,id
+   }
+}
 
 export default usersReducer
