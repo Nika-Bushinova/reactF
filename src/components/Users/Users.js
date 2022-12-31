@@ -3,6 +3,7 @@ import classes from './Users.module.css'
 import summer from '../../img/summer.png'
 import { NavLink } from 'react-router-dom';
 import { FollowAPI, setFollowF, setUnFollowF } from "../../API/APIJS";
+import { follow } from "../../redux/UsersReducer";
 
 
 let Users = (props) => {
@@ -36,15 +37,7 @@ let Users = (props) => {
                            return id === el.id
                         })}
                            onClick={() => {
-                              props.toggleProgress(true, el.id)
-                              FollowAPI.setUnFollowF(el)
-                                 .then((data) => {
-                                    if (data.resultCode === 0) {
-                                       props.unfollow(el.id)
-                                    }
-                                    props.toggleProgress(false, el.id)
-                                 })
-
+                              props.unfollow(el)
 
                            }
                            }>Unfollow</button>
@@ -52,14 +45,7 @@ let Users = (props) => {
                            return id === el.id
                         })} className={props.followingInProgress ? classes.toogleTrue : null}
                            onClick={() => {
-                              props.toggleProgress(true, el.id)
-                              FollowAPI.setFollowF(el)
-                                 .then((data) => {
-                                    if (data.resultCode === 0) {
-                                       props.follow(el.id)
-                                    } 
-                                    props.toggleProgress(false, el.id)
-                                 })
+                              props.follow(el)
 
                            }
                            }>Follow</button>

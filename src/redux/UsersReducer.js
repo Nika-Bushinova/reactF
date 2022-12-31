@@ -1,4 +1,4 @@
-import { UsersAPI } from "../API/APIJS"
+import { FollowAPI, UsersAPI } from "../API/APIJS"
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -73,13 +73,13 @@ const usersReducer = (state = initialState, action) => {
    }
 }
 
-export const follow = (id) => {
+export const followSuccess = (id) => {
    return {
       type: FOLLOW, id
    }
 }
 
-export const unfollow = (id) => {
+export const unfollowSuccess = (id) => {
    return {
       type: UNFOLLOW, id
    }
@@ -112,17 +112,42 @@ export const toggleProgress = (progressToggle, id) => {
 }
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {
-   return (dispatch)=>{
-   dispatch(setLoading(true))
-   dispatch(toggleProgress(true))
-   UsersAPI.getUsers(currentPage, pageSize).then((data) => {
-      dispatch(setLoading(false))
-      dispatch(setUsers(data.items))//засунули в state.users itemsы с сервера
-      dispatch(setTotalUsersCount(data.totalCount))//засунули в state totalCounts через totalUserCount
-      dispatch(setCurrentPage(currentPage))
-   })
-}
+   return (dispatch) => {
+      dispatch(setLoading(true))
+      dispatch(toggleProgress(true))
+      UsersAPI.getUsers(currentPage, pageSize).then((data) => {
+         dispatch(setLoading(false))
+         dispatch(setUsers(data.items))//засунули в state.users itemsы с сервера
+         dispatch(setTotalUsersCount(data.totalCount))//засунули в state totalCounts через totalUserCount
+         dispatch(setCurrentPage(currentPage))
+      })
+   }
 }
 
+export const follow = (el) => {
+   return (dispatch) => {
+      dispatch(toggleProgress(true, el.id))
+      FollowAPI.setFollowF(el)
+         .then((data) => {
+            if (data.resultCode === 0) {
+               dispatch(followSuccess(el.id))
+            }
+            dispatch(toggleProgress(false, el.id))
+         })
+   }
+}
+
+export const unfollow = (el) => {
+   return (dispatch) => {
+      dispatch(toggleProgress(true, el.id))
+      FollowAPI.setUnFollowF(el)
+         .then((data) => {
+            if (data.resultCode === 0) {
+               dispatch(unfollowSuccess(el.id))
+            }
+            dispatch(toggleProgress(false, el.id))
+         })
+   }
+}
 
 export default usersReducer
