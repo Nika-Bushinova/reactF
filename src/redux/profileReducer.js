@@ -1,3 +1,4 @@
+import { ProfileAPI } from "../API/APIJS"
 
 const addPost = 'ADD-POST'
 const upDateNewPostText = 'UPDATE-NEW-POST-TEXT'
@@ -73,9 +74,18 @@ export const addLikeActionCreater = (id, count) => {
       type: addLike, idLike: id, countLike: count
    }
 }
-export const setUserProfileAC = (profile) => {
+export const setUserProfile = (profile) => {
    return {
       type: SET_USERS_PROFILE, profile
+   }
+}
+export const getDataThunkCreator=(userId)=>{
+   return (dispatch)=>{
+      if (!userId) { userId = 9 }
+      ProfileAPI.getDatas(userId)
+      .then((response) => {
+         dispatch(setUserProfile(response))
+      })
    }
 }
 

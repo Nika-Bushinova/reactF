@@ -28,8 +28,11 @@ export const ProfileAPI={
 }
  
 export const AuthAPI={
+  
    getloginF:() => instance.get(`auth/me`).then((response) => { return response.data })
 }
+
+
 export const FollowAPI={
  setUnFollowF:(el)=>{
    
