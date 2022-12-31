@@ -1,20 +1,21 @@
+import { UsersAPI } from "../API/APIJS"
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
-const SET_CURRENT_PAGE='SET_CURRENT_PAGE'
-const SET_TOTAL_USERS_COUNT='SET_TOTAL_USERS_COUNT'
-const LOADING ='LOADING'
-const TOGGLE_FOLLOWING_PROGESS='TOGGLE_FOLLOWING_PROGESS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+const LOADING = 'LOADING'
+const TOGGLE_FOLLOWING_PROGESS = 'TOGGLE_FOLLOWING_PROGESS'
 
 let initialState = {
 
    users: [],
-   pageSize:20,
-   totalUserCount:0,
-   currentPage:3,
-   isFetching:true,
-   followingInProgress:[]
+   pageSize: 20,
+   totalUserCount: 0,
+   currentPage: 3,
+   isFetching: true,
+   followingInProgress: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -46,24 +47,25 @@ const usersReducer = (state = initialState, action) => {
       }
       case SET_USERS: {
 
-        return { ...state, users: action.users }
+         return { ...state, users: action.users }
 
       }
-      case SET_CURRENT_PAGE:{
-         return {...state, currentPage:action.currentPage}
+      case SET_CURRENT_PAGE: {
+         return { ...state, currentPage: action.currentPage }
       }
-      case SET_TOTAL_USERS_COUNT:{
-         return {...state, totalUserCount:action.count}
+      case SET_TOTAL_USERS_COUNT: {
+         return { ...state, totalUserCount: action.count }
       }
-      case LOADING:{
-         return {...state, isFetching:action.isFetching}
+      case LOADING: {
+         return { ...state, isFetching: action.isFetching }
       }
-      case TOGGLE_FOLLOWING_PROGESS:{
+      case TOGGLE_FOLLOWING_PROGESS: {
          return {
-            ...state, 
-            followingInProgress:action.progressToggle
-            ?[...state.followingInProgress,action.id]
-            :state.followingInProgress.filter((el)=>el!==action.id)}
+            ...state,
+            followingInProgress: action.progressToggle
+               ? [...state.followingInProgress, action.id]
+               : state.followingInProgress.filter((el) => el !== action.id)
+         }
       }
       default:
          return state
@@ -93,20 +95,34 @@ export const setCurrentPage = (currentPage) => {
    }
 }
 
-export const setTotalUsersCount=(totalUsersCount)=>{
-   return{
-      type: SET_TOTAL_USERS_COUNT, count:totalUsersCount
-   }
-}
-export const setLoading=(isFetching)=>{
-   return{
-      type:LOADING, isFetching
-   }
-}
-export const toggleProgress=(progressToggle,id)=>{
+export const setTotalUsersCount = (totalUsersCount) => {
    return {
-      type:TOGGLE_FOLLOWING_PROGESS, progressToggle,id
+      type: SET_TOTAL_USERS_COUNT, count: totalUsersCount
    }
 }
+export const setLoading = (isFetching) => {
+   return {
+      type: LOADING, isFetching
+   }
+}
+export const toggleProgress = (progressToggle, id) => {
+   return {
+      type: TOGGLE_FOLLOWING_PROGESS, progressToggle, id
+   }
+}
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+   return (dispatch)=>{
+   dispatch(setLoading(true))
+   dispatch(toggleProgress(true))
+   UsersAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(setLoading(false))
+      dispatch(setUsers(data.items))//засунули в state.users itemsы с сервера
+      dispatch(setTotalUsersCount(data.totalCount))//засунули в state totalCounts через totalUserCount
+      dispatch(setCurrentPage(currentPage))
+   })
+}
+}
+
 
 export default usersReducer
