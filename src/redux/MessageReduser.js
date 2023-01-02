@@ -26,7 +26,7 @@ let initialState = {
    { id: 4, name: 'Summer', photo: summer },
    { id: 5, name: 'Bet', photo: bet },
    { id: 6, name: 'The_President', photo: president }
-   ],
+   ]
 }
 export const messageReducer = (state = initialState, action) => {
    let stateCopy;

@@ -7,7 +7,6 @@ import { follow } from "../../redux/UsersReducer";
 
 
 let Users = (props) => {
-   console.log('users', props.users)
    let pagesCount = Math.ceil(props.totalUserCount / props.pageSize)
    let pages = []
    for (let i = 1; i <= pagesCount; i++) {
@@ -19,7 +18,7 @@ let Users = (props) => {
          <div>
             {pages.map((el) => <span className={props.currentPage === el ? classes.page : null} onClick={(e) => props.onPageChange(el)}>{el}, </span>)}
          </div>
-         <button /* onClick={getUsers} */> comon</button>
+         <button> comon</button>
          {
             (props.users.map((el) => <div id={props.users.length + 1}>
                <div>

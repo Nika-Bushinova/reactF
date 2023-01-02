@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addMessageActionCreater, updTextMessageActionCreater } from '../../../redux/MessageReduser';
 import Messages from './Messages';
+import { Navigate } from "react-router-dom";
+import { withAuthRedirect } from '../../../HOC/AuthRedirect';
 /* const MessagesContainer = (props) => {//add classes
    console.log('messagesCont', props)
   
@@ -23,9 +25,11 @@ import Messages from './Messages';
 let mapStateToProps=(state)=>{
    return{
       state:state,
-      messages:state.dialogsPage
+      messages:state.dialogsPage,
+
    }
 }
+
 
 let mapDispatchToProps=(dispatch)=>{
 
@@ -39,5 +43,6 @@ let mapDispatchToProps=(dispatch)=>{
    
    }
 }
-const MessagesContainer = connect(mapStateToProps,mapDispatchToProps)(Messages)
-export default MessagesContainer
+;
+let AuthRedirectComponent = withAuthRedirect(Messages);
+export default connect(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent )

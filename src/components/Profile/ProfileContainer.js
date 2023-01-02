@@ -2,35 +2,61 @@ import React from 'react';
 import Profile from './Profile';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { useLocation, useMatch, useMatches, useNavigate, useParams } from 'react-router-dom'
 import { setUserProfile} from '../../redux/profileReducer'
 import {ProfileAPI } from '../../API/APIJS';
 import { getDataThunkCreator } from './../../redux/profileReducer';
+import { Navigate } from "react-router-dom";
+import { withAuthRedirect } from '../../HOC/AuthRedirect';
 export let nameProfile = 'Rick Sanchez'
 export function withRouter(Children) {
-   return (props) => {
-      const match = { params: useParams() };
-      return <Children {...props} match={match} />
-   }
+  return (props) => {
+     const match = { params: useParams() };
+     return <Children {...props} match={match} />
+  }
 }
+/* function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return (
+      <Component
+        {...props}
+        router={{ location, navigate, params }}
+      />
+    );
+  }
+  return ComponentWithRouterProp;
+} */
+
 class ProfileContainer extends React.Component {
-   componentDidMount() {
+   componentDidMount() {  
+
       let userId = this.props.match.params.userId
+  
       this.props.getDataThunkCreator(userId)
    }
    render() {
-      console.log('3')
+      if(!this.props.isAuth){return <Navigate to={'/login'}/>}
+
       return (
 
          <Profile {...this.props} profile={this.props.profile} />
       )
    }
 }
-let mapStateToProps = (state) => {
-   console.log('map 1', state.profilePage.profile)
-   return { profile: state.profilePage.profile }
-}
 
 
-let withUrlDataContainerComponent = withRouter(ProfileContainer);
-export default connect(mapStateToProps, {getDataThunkCreator})(withUrlDataContainerComponent)
+
+let mapStateToProps = (state) => ({
+  profile: state.profilePage.profile
+});
+
+let ComponentWithRouterProp = withRouter(ProfileContainer);
+let AuthRedirectComponent = withAuthRedirect(ComponentWithRouterProp);
+
+
+
+
+export default connect(mapStateToProps, {getDataThunkCreator})( AuthRedirectComponent)

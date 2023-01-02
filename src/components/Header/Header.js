@@ -14,7 +14,8 @@ console.log(props)
    </div>
    <div className={s.loginBlock}>
       
-{props.isAuth?<div>{props.login}<div>{props.email}</div><div><p>Log Out</p></div></div>
+{props.isAuth
+?<div>{props.login}<div>{props.email}</div><div><p>Log Out</p></div></div>
 
 :<NavLink to={'/login'}>Login</NavLink>}
    </div>
