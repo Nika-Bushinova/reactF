@@ -2,7 +2,6 @@ import React from 'react';
 import classes from '../Messages.module.css'
 import { NavLink } from 'react-router-dom';
 const DialogItem = (props) => {
-
    return (
       <div className={classes.name}>
          <div>

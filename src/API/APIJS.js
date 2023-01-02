@@ -17,7 +17,9 @@ export const UsersAPI={
    }
 }
 export const ProfileAPI={
+
   getDatas: async (userId)=>{
+      debugger
       let response = await fetch(url+'profile/' + userId, {
          method: 'GET',
          headers: { 'Content-type': 'application/json; charset=utf-8' }

@@ -81,6 +81,7 @@ export const setUserProfile = (profile) => {
 }
 export const getDataThunkCreator=(userId)=>{
    return (dispatch)=>{
+      debugger
       if (!userId) { userId = 9 }
       ProfileAPI.getDatas(userId)
       .then((response) => {

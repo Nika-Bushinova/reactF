@@ -5,6 +5,9 @@ import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import { UsersAPI } from "../../API/APIJS";
 import { toggleProgress, getUsersThunkCreator, onPageChangeThunkCreator } from './../../redux/UsersReducer';
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
+import ProfileContainer from "../Profile/ProfileContainer";
+import { withAuthRedirect } from "../../HOC/AuthRedirect";
 
 class UsersContainer extends React.Component {
    componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
@@ -14,6 +17,8 @@ class UsersContainer extends React.Component {
       this.props.getUsersThunkCreator(el, this.props.pageSize)//коллбэк для санка onPageChangeThunkCreator
    }
    render() {
+
+
       return <>
          {this.props.isFetching ? <Preloader /> : null}
          <Users totalUserCount={this.props.totalUserCount}
@@ -33,6 +38,8 @@ class UsersContainer extends React.Component {
 
 }
 
+
+
 let mapStateToProps = (state) => {
    return {
       users: state.usersPage.users,
@@ -40,14 +47,15 @@ let mapStateToProps = (state) => {
       totalUserCount: state.usersPage.totalUserCount,
       currentPage: state.usersPage.currentPage,
       isFetching: state.usersPage.isFetching,
-      followingInProgress: state.usersPage.followingInProgress
+      followingInProgress: state.usersPage.followingInProgress,
+      isAuth:state.auth.isAuth
    }
 }
 
-
-export default connect(mapStateToProps, {
+let AuthRedirectComponent = withAuthRedirect(UsersContainer);
+export default withAuthRedirect( connect(mapStateToProps, {
    follow,
    unfollow,
   getUsersThunkCreator
 }
-)(UsersContainer)
+)(AuthRedirectComponent))

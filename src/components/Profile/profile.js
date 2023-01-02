@@ -5,7 +5,7 @@ import PostsContainer from './posts/postsContainer';
 
 
 function Profile(props) {
-   console.log('profile', props.profile)
+
    return (
   
       <main className={pC.wrapper__content}>
