@@ -4,6 +4,7 @@ import { addMessageActionCreater, updTextMessageActionCreater } from '../../../r
 import Messages from './Messages';
 import { Navigate } from "react-router-dom";
 import { withAuthRedirect } from '../../../HOC/AuthRedirect';
+import { compose } from 'redux';
 /* const MessagesContainer = (props) => {//add classes
    console.log('messagesCont', props)
   
@@ -43,6 +44,10 @@ let mapDispatchToProps=(dispatch)=>{
    
    }
 }
-;
-let AuthRedirectComponent = withAuthRedirect(Messages);
-export default connect(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent )
+
+
+
+export default compose(
+   connect(mapStateToProps,mapDispatchToProps),
+   withAuthRedirect
+   )(Messages)

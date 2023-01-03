@@ -8,13 +8,17 @@ import {ProfileAPI } from '../../API/APIJS';
 import { getDataThunkCreator } from './../../redux/profileReducer';
 import { Navigate } from "react-router-dom";
 import { withAuthRedirect } from '../../HOC/AuthRedirect';
+import { compose } from 'redux';
 export let nameProfile = 'Rick Sanchez'
+
 export function withRouter(Children) {
   return (props) => {
-     const match = { params: useParams() };
+     const match = { params: useParams()};
+  
      return <Children {...props} match={match} />
   }
 }
+
 /* function withRouter(Component) {
   function ComponentWithRouterProp(props) {
     let location = useLocation();
@@ -32,9 +36,8 @@ export function withRouter(Children) {
 
 class ProfileContainer extends React.Component {
    componentDidMount() {  
-
+    
       let userId = this.props.match.params.userId
-  
       this.props.getDataThunkCreator(userId)
    }
    render() {
@@ -48,15 +51,16 @@ class ProfileContainer extends React.Component {
 }
 
 
-
+debugger
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile
 });
 
-let ComponentWithRouterProp = withRouter(ProfileContainer);
-let AuthRedirectComponent = withAuthRedirect(ComponentWithRouterProp);
 
 
 
 
-export default connect(mapStateToProps, {getDataThunkCreator})( AuthRedirectComponent)
+export default compose(
+  connect(mapStateToProps, {getDataThunkCreator}),
+  withRouter,
+  withAuthRedirect)(ProfileContainer)

@@ -8,6 +8,7 @@ import { toggleProgress, getUsersThunkCreator, onPageChangeThunkCreator } from '
 import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import ProfileContainer from "../Profile/ProfileContainer";
 import { withAuthRedirect } from "../../HOC/AuthRedirect";
+import { compose } from "redux";
 
 class UsersContainer extends React.Component {
    componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
@@ -52,10 +53,10 @@ let mapStateToProps = (state) => {
    }
 }
 
-let AuthRedirectComponent = withAuthRedirect(UsersContainer);
-export default withAuthRedirect( connect(mapStateToProps, {
+
+export default compose(connect(mapStateToProps, {
    follow,
    unfollow,
   getUsersThunkCreator
 }
-)(AuthRedirectComponent))
+),withAuthRedirect)(UsersContainer)
