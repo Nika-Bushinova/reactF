@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLikeActionCreater, addPostActionCreater, updTextActionCreater } from '../../../redux/profileReducer';
+import { addFraseAC, addLikeActionCreater, addPostActionCreater, updTextActionCreater } from '../../../redux/profileReducer';
 import store from '../../../redux/store';
 import Posts from './posts';
 /* const PostsContainer = (props) => {

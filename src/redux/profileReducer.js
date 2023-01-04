@@ -1,9 +1,12 @@
+import { useTransition } from "react"
 import { ProfileAPI } from "../API/APIJS"
 
 const addPost = 'ADD-POST'
 const upDateNewPostText = 'UPDATE-NEW-POST-TEXT'
 const addLike = 'ADD-LIKEF'
 let SET_USERS_PROFILE = 'SET-USERS-PROFILE'
+let ADDSTATUSFRASE = 'ADDSTATUSFRASE'
+
 let initialState = {
 
    arrLikes: [
@@ -12,20 +15,12 @@ let initialState = {
       { id: 3, likeCounts: '15000', message: "I'm a scientist; because I invent, transform, create, and destroy for a living, and when I don't like something about the world, I change it" }
    ],
    newText: ' ',
-   profile:null
-
+   profile: null,
+   statusFrase: '',
 }
 const profileReducer = (state = initialState, action) => {
-  /*  debugger
-   let state = {
-      ...state,
-    //  arrLikes: [...state.arrLikes],
-     // profile:null,
-
-   }  */
-
    switch (action.type) {
-     
+
       case addPost: {
          let idNewPost = state.arrLikes.length + 1;
          let newPost = {
@@ -48,9 +43,13 @@ const profileReducer = (state = initialState, action) => {
          return state;
       }
       case SET_USERS_PROFILE: {
-         
-         return {...state, profile:action.profile}//вернем копию стейта и поменяем профайл на профайл, который сидит в экшене
+
+         return { ...state, profile: action.profile }//вернем копию стейта и поменяем профайл на профайл, который сидит в экшене
       }
+      case ADDSTATUSFRASE:{
+         return {...state, statusFrase:action.statusFrase}
+      }
+
       default:
          return state
 
@@ -79,15 +78,38 @@ export const setUserProfile = (profile) => {
       type: SET_USERS_PROFILE, profile
    }
 }
-export const getDataThunkCreator=(userId)=>{
-   return (dispatch)=>{
-      debugger
-      if (!userId) { userId = 9 }
+export const addFrase=(statusFrase)=>{
+   return{
+      type:ADDSTATUSFRASE, statusFrase
+   }
+}
+
+export const getDataThunkCreator = (userId) => {
+   return (dispatch) => {
+      if (!userId) { userId = 27206 }
       ProfileAPI.getDatas(userId)
+         .then((response) => {
+            dispatch(setUserProfile(response))
+         })
+         ProfileAPI.getStatus(userId)
+         .then((response) => {
+        
+            dispatch(addFrase(response))
+         })
+   }
+}
+export const updateThunkCreator=(status)=>{
+   return(dispatch)=>{
+      ProfileAPI.updStatus(status)
       .then((response) => {
-         dispatch(setUserProfile(response))
+         if(response.data.resultCode===0){
+                    dispatch(addFrase(status)) 
+         }
+
       })
    }
 }
+
+
 
 export default profileReducer

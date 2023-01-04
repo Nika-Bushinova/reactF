@@ -2,16 +2,20 @@ import React from 'react';
 import pC from './Profile.module.css'
 import photo from './../../img/rick.jpg'
 import Preloader from '../common/Preloader/Preloader';
+import ProfileStatus from './ProfileStatus'
+import { addFrase } from '../../redux/profileReducer';
 export let photoProfile = photo
 const ProfileInfo = (props) => {
-   console.log('info1', props)
+   console.log('info', props)
    if(!props.profile){
       return (<Preloader/>)
    } 
    return (<div className={pC.main__info}>
       <div className={pC.info__img}><img src={props.profile.photos.large} alt='Photo'></img></div>
       <div className={pC.text}>
-         <ul><h1>{props.profile.fullName}</h1></ul>
+         <ul><h1>{props.profile.fullName}</h1>
+         <ProfileStatus status={props.statusFrase} addFrase={props.addFrase} updateStatus={props.updateStatus}/>
+         </ul>
          <li><b>About me</b>: {props.profile.aboutMe}</li>
          <li><b>Contacts</b>: <ul>
             <li> <b>{!props.profile.contacts.facebook!=null?props.profile.contacts.facebook:`Facebook:   ${props.profile.contacts.facebook}`}</b></li>
