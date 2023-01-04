@@ -8,12 +8,6 @@ import { addLikeActionCreater } from './../../../redux/profileReducer';
 function Post(props){
   console.log('posts', props)
   let likeElement=React.createRef()
-/*  let likeCountF=()=>{
-    let count=props.likeCounts
-    console.log(count)
-    let id=props.id
-   props.dispatch(addLikeActionCreater(id, count))
-  }*/
    let likeCountF=()=>{
     let count=props.likeCounts
     props.addLike(props.id,count)
