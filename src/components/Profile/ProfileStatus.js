@@ -11,7 +11,6 @@ class ProfileStatus extends React.Component {
       status:this.props.status
    }
    activateEditMode=()=>{
-      console.log('this', this)
        this.setState({
          editMode:true
       }) 
@@ -29,8 +28,22 @@ this.setState({
 
    //let text=this.newPostElement.current.value;
   // this.props.addFrase(text)
+
+}
+
+componentDidUpdate(prevProps, prevState){
+if(prevProps.status!==this.props.status)
+this.setState({
+   status:this.props.status
+})
+console.log('componentDidUpd', this.state.status)
+}
+
+componentWillUnmount(){
+   console.log('componentWillUN')
 }
    render() {
+      console.log('render')
       return (<div>
          {!this.state.editMode && <h2 onClick={this.activateEditMode}>{this.props.status||'No status'}</h2>}
          {this.state.editMode && <div><textarea onBlur ={this.deactivateEditMode} value={this.state.status} autoFocus={true}  onChange={this.onStatusChange} className={pC.input}></textarea></div>}

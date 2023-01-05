@@ -6,7 +6,6 @@ import ProfileStatus from './ProfileStatus'
 import { addFrase } from '../../redux/profileReducer';
 export let photoProfile = photo
 const ProfileInfo = (props) => {
-   console.log('info', props)
    if(!props.profile){
       return (<Preloader/>)
    } 
