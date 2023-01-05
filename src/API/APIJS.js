@@ -24,7 +24,6 @@ function requestProfileData(path) {
          headers: { 'Content-type': 'application/json; charset=utf-8' }
       })
       let data = await response.json()
-      console.log(data)
       return data
    }
 }

@@ -6,7 +6,6 @@ import { photoProfile } from '../Profile__info';
 import { addLikeActionCreater } from './../../../redux/profileReducer';
 
 function Post(props){
-  console.log('posts', props)
   let likeElement=React.createRef()
    let likeCountF=()=>{
     let count=props.likeCounts

@@ -28,7 +28,6 @@ class ProfileContainer extends React.Component {
       this.props.updateThunkCreator(this.props.statusFrase)
    }
    render() {
-    console.log(this.props)
       if(!this.props.isAuth){return <Navigate to={'/login'}/>}
 
       return (
