@@ -14,33 +14,42 @@ let initialState = {
       { id: 2, likeCounts: '9500', message: "Weddings are basically funerals with cake. If I wanted to watch someone throw their life away, I'd hang out with Jerry all day." },
       { id: 3, likeCounts: '15000', message: "I'm a scientist; because I invent, transform, create, and destroy for a living, and when I don't like something about the world, I change it" }
    ],
-   newText: ' ',
    profile: null,
    statusFrase: '',
 }
+
+
 const profileReducer = (state = initialState, action) => {
    switch (action.type) {
 
       case addPost: {
-         let idNewPost = state.arrLikes.length + 1;
+         let stateCopy = { 
+            ...state,
+            arrLikes:[...state.arrLikes], 
+          }
+         debugger
+         let idNewPost = stateCopy.arrLikes.length + 1;
          let newPost = {
             id: idNewPost,
             likeCounts: '0',
-            message: state.newText
+            message: action.post
          }
-         state.arrLikes.push(newPost);
-         state.newText = ' ';
-         return state;
+         stateCopy.arrLikes.push(newPost)
+         return stateCopy ;
       }
       case upDateNewPostText: {
          state.newText = action.newTexttext;
          return state;
       }
       case addLike: {
-         let likes = parseInt(state.arrLikes[action.idLike - 1].likeCounts) + 1
-         state.arrLikes[action.idLike - 1].likeCounts = likes
+         let stateCopy = { 
+            ...state,
+            arrLikes:[...state.arrLikes], 
+          }
+         let likes = parseInt(stateCopy.arrLikes[action.idLike - 1].likeCounts) + 1
+         stateCopy.arrLikes[action.idLike - 1].likeCounts = likes
 
-         return state;
+         return stateCopy;
       }
       case SET_USERS_PROFILE: {
 
@@ -56,9 +65,9 @@ const profileReducer = (state = initialState, action) => {
    }
 }
 
-export const addPostActionCreater = () => {
+export const addPostActionCreater = (post) => {
    return {
-      type: addPost
+      type: addPost, post
    }
 }
 
