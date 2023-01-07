@@ -50,3 +50,12 @@ export const FollowAPI = {
    }
 }
 
+export const LoginAPI={
+   onSubmitMine:(formData)=>{
+      return instance.post(`/auth/login`, formData).then((response) => {
+         return response.data })
+   }
+}
+
+
+

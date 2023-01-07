@@ -4,7 +4,7 @@ import Preloader from '../common/Preloader/Preloader';
 import s from './Header.module.css'
 
 function Header(props){
-console.log(props)
+
 
    return(
 

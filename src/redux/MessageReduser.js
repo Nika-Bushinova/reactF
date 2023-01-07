@@ -6,8 +6,6 @@ import bet from '../img/bet.png'
 import president from '../img/president.png'
 import { photoProfile } from '../components/Profile/Profile__info';
 import { nameProfile } from '../components/Profile/Profile';
-
-const upDateNewMessageBody = 'UPDATE-NEW-MESSAGE';
 const addMessage = 'ADD-MESSAGE';
 let initialState = {
    messagesData: [
@@ -31,8 +29,8 @@ let initialState = {
 export const messageReducer = (state = initialState, action) => {
    let stateCopy;
    switch (action.type) {
-      case addMessage:
-
+          case addMessage:
+let body=action.newMessageText
          stateCopy = { 
             ...state,
             messagesData:[...state.messagesData], 
@@ -40,30 +38,20 @@ export const messageReducer = (state = initialState, action) => {
           }
           let idNewMessage = stateCopy.messagesData.length + 1;
           let newMessage = {
-             id: idNewMessage, idM: 0, message: stateCopy.newMessageText, photo: stateCopy.arr[0].photo
+             id: idNewMessage, idM: 0, message: body, photo: stateCopy.arr[0].photo
           }
          stateCopy.messagesData.push(newMessage);
-         stateCopy.newMessageText = ''
          return stateCopy
-      
-      case upDateNewMessageBody:
-        return  stateCopy = { 
-            ...state,
-            newMessageText:action.newTextM
-          }    
+       
       default:
         return stateCopy = { ...state }
    }
 
 }
-export const addMessageActionCreater = () => {
+export const addMessageActionCreater = (newMessageText) => {
    return {
-      type: addMessage
+      type: addMessage, newMessageText
    }
 }
-export const updTextMessageActionCreater = (text) => {
-   return {
-      type: upDateNewMessageBody, newTextM: text
-   }
-}
+
 export default messageReducer
