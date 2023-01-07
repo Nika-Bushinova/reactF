@@ -3,35 +3,30 @@ import Preloader from '../../common/Preloader/Preloader';
 import DialogItem from '../dialog/Dialogs';
 import classes from '../Messages.module.css'
 import Message from './Message';
+import { Field, reduxForm } from 'redux-form';
 
 const MessageTitle = (props) => {
    return <div className={classes.center}><div><img src={props.photo} alt={props.name} className={classes.img__message}></img></div>Messages</div>
 }
-const Messages = (props) => {//add classes
 
+
+const Messages = (props) => {//add classes
    let state = props.messages;
    let dialogElements = state.arr.map((el) => { return <DialogItem name={el.name} id={el.id} photo={el.photo} /> })
-   let messageArr = state.messagesData.map((el) => { return <Message text={el.message} id={el.id} photo={dialogElements[el.idM].props.photo} updMessage={props.updMessage} /> })
+   let messageArr = state.messagesData.map((el) => { return <Message text={el.message} id={el.id} photo={dialogElements[el.idM].props.photo} /> })
+   let addMessage = (values) => {
+      props.sendMessage(values.message)
+   }
 
-   let textMessage = React.createRef()
-   let createMessage = () => {
-      props.sendMessage()
-   }
-   let onMessageChange = () => {
-      let text = textMessage.current.value;
-      props.updTextMessageBody(text)
-   }
-  
- 
    return (
+
       <div className={classes.dialogs}>
          <div className={classes.dialogs__messages}>
             <MessageTitle photo={messageArr[0].props.photo} />
             {messageArr}
-
-            <div className={classes.new}>New message
-               <textarea ref={textMessage} onChange={onMessageChange} value={props.messages.newMessageText}/></div>
-            <div onClick={createMessage} >Send</div>
+            <div >
+               <FormMessageRedux onSubmit={addMessage} />
+            </div>
          </div>
          <div className={classes.dialogs__names}>
             <div>Dialogs</div>
@@ -40,4 +35,16 @@ const Messages = (props) => {//add classes
       </div>
    )
 }
+
+const FormMessage = (props) => {
+   return (
+      <form className={classes.dialogs__messages} onSubmit={props.handleSubmit}>
+
+         <div className={classes.new}>New message
+            <Field placeholder='your message' name='message' component={'textarea'}/*  ref={textMessage} onChange={onMessageChange} value={props.messages.newMessageText} */ /></div>
+         <button>Send</button>
+      </form>
+   )
+}
+const FormMessageRedux = reduxForm({ form: 'Addmessages' })(FormMessage)
 export default Messages

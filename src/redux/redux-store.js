@@ -8,14 +8,15 @@ import authReducer from "./authReducer";
 import { configureStore, combineReducers, applyMiddleware } from "@reduxjs/toolkit";
 import  thunkMiddleware  from "redux-thunk";
 import loginReducer from "../components/Login/LoginReducer";
-
+import {reducer as formReducer} from 'redux-form'
 let reducers =combineReducers({
    profilePage:profileReducer,
    dialogsPage:messageReducer,
   sideBar:sideBarReducer,
   usersPage:usersReducer,
   auth:authReducer,
-  login:loginReducer
+  login:loginReducer,
+  form:formReducer
 })
 
 let store = configureStore(
