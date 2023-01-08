@@ -11,7 +11,7 @@ function Profile(props) {
       <main className={pC.wrapper__content}>
          <div className={pC.main__bg}> </div>
          <ProfileInfo {...props} />
-         <PostsContainer />
+         <PostsContainer fullName={props.profile} />
       </main>
    )
 }

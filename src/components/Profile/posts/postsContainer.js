@@ -3,37 +3,13 @@ import { connect } from 'react-redux';
 import { addFraseAC, addLikeActionCreater, addPostActionCreater, updTextActionCreater } from '../../../redux/profileReducer';
 import store from '../../../redux/store';
 import Posts from './posts';
-/* const PostsContainer = (props) => {
-
-   return (
-      <StoreContext.Consumer>
-         {(store) => {
-               console.log('cont', store)
-            let state = store.getState();
-            let addPost = () => {
-               store.dispatch(addPostActionCreater())
-            }
-            let onPostChange = (text) => {
-               let action = updTextActionCreater(text)
-               store.dispatch(action)
-            }
-            return <Posts upDateNewPostText={onPostChange}
-               addPost={addPost}
-               posts={state.profilePage.arrLikes}
-               newText={state.profilePage.newText}
-               store={store} />
-         }}
-
-      </StoreContext.Consumer>
-   )
-} */
-
 let mapStateToProps = (state) => {//запускается каждый раз, когда в state изменения. Формируется новый объект, который сравнивается со старым объектом внутренностями
 
    return {
       posts: state.profilePage.arrLikes,
       newText: state.profilePage.newText,
-      store: store
+      store: store,
+      
    }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -44,8 +20,8 @@ let mapDispatchToProps = (dispatch) => {
          dispatch(action)
       },
 
-      addPost: () => {
-         dispatch(addPostActionCreater())
+      addPost: (post) => {
+         dispatch(addPostActionCreater(post))
       },
 
       addLike: (id, count) => {

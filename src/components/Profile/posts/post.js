@@ -14,7 +14,7 @@ function Post(props){
    return(     <div className={classes.item}>
       <div className ={classes.image}><img src={photoProfile} alt='mini avatar'></img></div>
       <div>
-      <p>{'h'}</p>
+      <p>{!props.profile?'xx':props.profile.fullName}</p>
       <p>{props.message}</p>
       <div className={classes.button}><div className={classes.countLikes}><img className={classes.like} src={like} onClick={likeCountF}alt='like'></img></div> <span ref={likeElement}>{props.likeCounts}</span></div>
       </div>
