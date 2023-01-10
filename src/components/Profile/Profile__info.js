@@ -4,6 +4,7 @@ import photo from './../../img/rick.jpg'
 import Preloader from '../common/Preloader/Preloader';
 import ProfileStatus from './ProfileStatus'
 import { addFrase } from '../../redux/profileReducer';
+import ProfileStatuswithHooks from './ProfileWithHooks';
 export let photoProfile = photo
 const ProfileInfo = (props) => {
    if(!props.profile){
@@ -13,7 +14,7 @@ const ProfileInfo = (props) => {
       <div className={pC.info__img}><img src={props.profile.photos.large} alt='Photo'></img></div>
       <div className={pC.text}>
          <ul><h1>{props.profile.fullName}</h1>
-         <ProfileStatus status={props.statusFrase} addFrase={props.addFrase} updateStatus={props.updateStatus}/>
+         <ProfileStatuswithHooks getStatus={props.getStatus} status={props.statusFrase} addFrase={props.addFrase} updateStatus={props.updateStatus}/>
          </ul>
          <li><b>About me</b>: {props.profile.aboutMe}</li>
          <li><b>Contacts</b>: <ul>

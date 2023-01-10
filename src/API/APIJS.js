@@ -30,9 +30,13 @@ function requestProfileData(path) {
 
 export const ProfileAPI = {
    getDatas: requestProfileData('profile/'), 
-   getStatus: requestProfileData('profile/status/'),
+   getStatus(userId){
+      return instance.get(`profile/status/`+userId)
+   },
+
    updStatus:(status)=>{
-      return instance.put(`profile/status`,{status:status} )
+
+      return instance.put(`profile/status/`,{status:status} )
    }
 }
 export const AuthAPI = {

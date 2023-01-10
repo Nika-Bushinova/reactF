@@ -27,7 +27,6 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             arrLikes:[...state.arrLikes], 
           }
-         debugger
          let idNewPost = stateCopy.arrLikes.length + 1;
          let newPost = {
             id: idNewPost,
@@ -98,13 +97,19 @@ export const getDataThunkCreator = (userId) => {
       if (!userId) { userId = 27206 }
       ProfileAPI.getDatas(userId)
          .then((response) => {
+
             dispatch(setUserProfile(response))
          })
+   }
+}
+
+export const getStatusThunk = (userId) => {
+   return (dispatch) => {
+      if (!userId) { userId = 27206 }
          ProfileAPI.getStatus(userId)
          .then((response) => {
-        
-            dispatch(addFrase(response))
-         })
+            dispatch(addFrase(response.data))
+         }) 
    }
 }
 export const updateThunkCreator=(status)=>{
