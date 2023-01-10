@@ -22,9 +22,11 @@ const Messages = (props) => {//add classes
 
       <div className={classes.dialogs}>
          <div className={classes.dialogs__messages}>
-            <MessageTitle photo={messageArr[0].props.photo} />
-            {messageArr}
-            <div >
+            <div className={classes.message_div}>
+               <MessageTitle photo={messageArr[0].props.photo} />
+               {messageArr}
+            </div>
+            <div className={classes.messageForm}>
                <FormMessageRedux onSubmit={addMessage} />
             </div>
          </div>
@@ -38,10 +40,10 @@ const Messages = (props) => {//add classes
 
 const FormMessage = (props) => {
    return (
-      <form className={classes.dialogs__messages} onSubmit={props.handleSubmit}>
+      <form className={classes.dialogs__message_area} onSubmit={props.handleSubmit}>
 
-         <div className={classes.new}>New message
-            <Field placeholder='your message' name='message' component={'textarea'}/*  ref={textMessage} onChange={onMessageChange} value={props.messages.newMessageText} */ /></div>
+         <div className={classes.new}>
+            <Field placeholder='Your message' name='message' component={'textarea'} className={classes.message__text}/*  ref={textMessage} onChange={onMessageChange} value={props.messages.newMessageText} */ /></div>
          <button>Send</button>
       </form>
    )

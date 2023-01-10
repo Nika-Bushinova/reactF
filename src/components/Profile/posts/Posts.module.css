@@ -5,9 +5,8 @@
   margin:10px;
 }
 .new__post div{
-  margin:10px 0px 10px 93%;
-  background: rgba(11, 112, 228, 0.7);
-  width:50px;
+  margin:10px 0px 10px 10px;
+
   border-radius: 10%;
   cursor:pointer
 }
@@ -40,16 +39,23 @@ display:flex
   margin:10px 0px;
  
  }
- .button{ color:rgba(11, 112, 228, 0.7);
+ button{ color:rgba(11, 112, 228, 0.9);
+  background: rgba(11, 112, 228, 0.5);
+  border-radius: 10px;
+  border:1px solid rgba(11, 112, 228, 0.9);
   display: flex;
   align-items: center;
+  margin-top:10px;
+  margin-left:10px;
+  padding:10px 20px;
 
  }
- textarea{
+ .textarea{
   display:block;
-  width:98%;
-  margin:0px 10px;
-  padding:10px
+border:1px solid gray;
+border-radius:10px;
+  padding:10px;
+  width:100%
  }
  .button div{
   width:40px;
@@ -64,4 +70,10 @@ display:flex
 
  .countLikes{
  width:100%
+ }
+ input{
+  border:1px solid gray;
+  border-radius:10px;
+  margin-bottom:5px;
+  padding:5px;
  }

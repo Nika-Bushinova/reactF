@@ -27,7 +27,7 @@ const onSatusChange=(e)=>{
 
       return (<div>
          { !editMode&& <h2 onClick={activateMode}  >{props.status||'No status' }</h2>}
-         {editMode && <div><textarea onBlur={deactivateEditMode} onChange={onSatusChange}value={status} autoFocus={true}   className={pC.input}></textarea></div>}
+         {editMode && <div><textarea onBlur={deactivateEditMode} onChange={onSatusChange}value={status} autoFocus={true}   className={pC.textArea}></textarea></div>}
       </div>)
    
 }
