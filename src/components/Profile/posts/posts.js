@@ -22,7 +22,7 @@ return(<div className={classes.main__posts}>
 const PostsForm=(props)=>{
    return(<form onSubmit={props.handleSubmit}>
       <div className={classes.new__post}><p>New Post</p>
-   <Field placeholder='Your post' name='post' component={Textarea} validate={[required, maxLengthF(10)]} className={classes.textarea}/>
+   <Field placeholder='My post' name='post' component={Textarea} validate={[required, maxLengthF(10)]} className={classes.textarea}/>
    <button>Send</button>
    </div></form>
    )
