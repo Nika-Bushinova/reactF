@@ -5,7 +5,6 @@ import s from './Header.module.css'
 
 function Header(props){
 
-
    return(
 
    <header className={s.wrapper__header}>
@@ -14,10 +13,9 @@ function Header(props){
    </div>
    <div className={s.loginBlock}>
       
-{props.isAuth
-?<div>{props.login}<div>{props.email}</div><div><p>Log Out</p></div></div>
+{props.isAuth?<div>{props.login}<div>{props.email}</div><button onClick={()=> props.LogOutThunkCreator()}><p>Log Out</p></button></div>
 
-:<NavLink to={'/login'}>Login</NavLink>}
+:<button><NavLink to={'/login'}>Login</NavLink></button>}
    </div>
   </header>
 

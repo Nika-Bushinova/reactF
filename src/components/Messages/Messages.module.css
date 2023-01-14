@@ -89,13 +89,7 @@ display:flex;
 justify-content: center;
 align-items: center
 }
-.message__text{
-  width:100%;
-  padding:10px;
-  border:1px solid gray;
-  border-radius: 10px;
 
-}
 .dialogs__message_area{
 margin:10px
 }

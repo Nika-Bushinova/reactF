@@ -4,7 +4,8 @@ import DialogItem from '../dialog/Dialogs';
 import classes from '../Messages.module.css'
 import Message from './Message';
 import { Field, reduxForm } from 'redux-form';
-
+import { Textarea } from '../../common/formsControls';
+import { maxLengthF,required } from '../../validators/validator';
 const MessageTitle = (props) => {
    return <div className={classes.center}><div><img src={props.photo} alt={props.name} className={classes.img__message}></img></div>Messages</div>
 }
@@ -37,13 +38,13 @@ const Messages = (props) => {//add classes
       </div>
    )
 }
-
+let maxLength50=maxLengthF(50);
 const FormMessage = (props) => {
    return (
       <form className={classes.dialogs__message_area} onSubmit={props.handleSubmit}>
 
          <div className={classes.new}>
-            <Field placeholder='Your message' name='message' component={'textarea'} className={classes.message__text}/*  ref={textMessage} onChange={onMessageChange} value={props.messages.newMessageText} */ /></div>
+            <Field placeholder='Your message' name='message' component={Textarea} validate={[required,maxLength50]} /></div>
          <button>Send</button>
       </form>
    )

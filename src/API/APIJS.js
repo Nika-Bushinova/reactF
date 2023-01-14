@@ -60,6 +60,12 @@ export const LoginAPI={
          return response.data })
    }
 }
+export const LogOutAPI={
+   onDeleteMine:(userId)=>{
+      return instance.delete(`/auth/login`, userId).then((response) => {
+         return response.data })
+   }
+}
 
 
 

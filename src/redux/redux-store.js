@@ -15,7 +15,7 @@ let reducers =combineReducers({
   sideBar:sideBarReducer,
   usersPage:usersReducer,
   auth:authReducer,
-  login:loginReducer,
+  login:authReducer,
   form:formReducer
 })
 

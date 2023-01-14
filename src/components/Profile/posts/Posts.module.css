@@ -4,12 +4,7 @@
 .new__post{
   margin:10px;
 }
-.new__post div{
-  margin:10px 0px 10px 10px;
 
-  border-radius: 10%;
-  cursor:pointer
-}
 .new__post p{
   margin:10px;
 }
@@ -50,13 +45,7 @@ display:flex
   padding:10px 20px;
 
  }
- .textarea{
-  display:block;
-border:1px solid gray;
-border-radius:10px;
-  padding:10px;
-  width:100%
- }
+
  .button div{
   width:40px;
   height:40px;
@@ -65,15 +54,11 @@ border-radius:10px;
  .like{
   width:40px;
   height:40px;
-  
+ 
  }
+ .button span{  color:red}
 
  .countLikes{
  width:100%
  }
- input{
-  border:1px solid gray;
-  border-radius:10px;
-  margin-bottom:5px;
-  padding:5px;
- }
+

@@ -18,11 +18,11 @@ return(<div className={classes.main__posts}>
    
  </div>)
 }
-
+let maxLength=maxLengthF(10)
 const PostsForm=(props)=>{
    return(<form onSubmit={props.handleSubmit}>
       <div className={classes.new__post}><p>New Post</p>
-   <Field placeholder='My post' name='post' component={Textarea} validate={[required, maxLengthF(10)]} className={classes.textarea}/>
+   <Field placeholder='My post' name='post' component={Textarea} validate={[required, maxLength]} />
    <button>Send</button>
    </div></form>
    )

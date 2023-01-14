@@ -22,7 +22,6 @@ const deactivateEditMode=()=>{
 }
 const onSatusChange=(e)=>{
    setStatus(e.currentTarget.value)
-   console.log(e.currentTarget.value)
 }
 
       return (<div>
