@@ -94,7 +94,9 @@ export const addFrase=(statusFrase)=>{
 
 export const getDataThunkCreator = (userId) => {
    return (dispatch) => {
-      if (!userId) { userId = 27206 }
+      if (!userId) { 
+
+         userId = this.props.loggedUser }
       ProfileAPI.getDatas(userId)
          .then((response) => {
 
@@ -105,7 +107,7 @@ export const getDataThunkCreator = (userId) => {
 
 export const getStatusThunk = (userId) => {
    return (dispatch) => {
-      if (!userId) { userId = 27206 }
+     // if (!userId) { userId = 27206 }
          ProfileAPI.getStatus(userId)
          .then((response) => {
             dispatch(addFrase(response.data))

@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form"
 import { AuthAPI, LogOutAPI,LoginAPI } from "../API/APIJS"
 
 const SET_USER_AUTH='SET_USER_AUTH'
@@ -54,15 +55,17 @@ export const usersDataThunkCreator=()=>{
    }
 }
 export const LoginThunkCreator=(formData)=>{
+
    return(dispatch)=>{
-      LoginAPI.onSubmitMine(formData)
+       LoginAPI.onSubmitMine(formData)
       .then((response) => {
          if( response.resultCode===0){
             dispatch(setIdLogin(response.data)) 
          }else{
-            return response.message
+           let message= response.messages.length>0?response.messages[0]:'Some error';
+            dispatch(stopSubmit('login', {_error:message}))
          }
-      })
+      }) 
    }
 }
 export const LogOutThunkCreator=()=>{
