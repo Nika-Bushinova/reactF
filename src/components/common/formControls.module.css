@@ -16,4 +16,4 @@ color:red
 
 }
 
-.error{border:1px red solid ;}
+.error,._error{border:1px red solid ;}
