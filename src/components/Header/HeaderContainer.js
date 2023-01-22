@@ -2,14 +2,11 @@ import React from "react";
 import axios from 'axios';
 import Header from "./Header";
 import { connect } from "react-redux";
-import { setAuth, usersDataThunkCreator,LogOutThunkCreator,LoginThunkCreator} from './../../redux/authReducer';
+import { setAuth, LogOutThunkCreator} from './../../redux/authReducer';
 import { AuthAPI, getloginF } from "../../API/APIJS";
 
 class HeaderContainer extends React.Component{
-   componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
 
-      this.props.usersDataThunkCreator()
-   }
    render(){
       return <Header {...this.props}/>
    }
@@ -25,4 +22,4 @@ let mapStateToProps=(state)=>{
 }
 
 
-export default connect(mapStateToProps, {usersDataThunkCreator,setAuth,LogOutThunkCreator})(HeaderContainer )
+export default connect(mapStateToProps, {setAuth,LogOutThunkCreator})(HeaderContainer )

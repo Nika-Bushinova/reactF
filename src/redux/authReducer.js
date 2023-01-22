@@ -45,7 +45,7 @@ export const setIdLogin=(data)=>{
 
 export const usersDataThunkCreator=()=>{
    return (dispatch)=>{
-      AuthAPI.getloginF()
+      return AuthAPI.getloginF()
       .then((data) => {
          if( data.resultCode===0){
             let {id, email, login}=data.data

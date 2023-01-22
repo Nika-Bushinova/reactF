@@ -1,6 +1,6 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header/Header';
+
 import Nav from './components/Nav/Nav';
 import News from './components/Nav/News';
 import Music from './components/Nav/Music';
@@ -10,14 +10,34 @@ import MessagesContainer from './components/Messages/message/MessagesContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import LoginContainer from './components/Login/LoginContainer';
+
 import Login from './components/Login/Login';
+import React from 'react';
+
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import {initializeApp} from './redux/appReducer'
+import Preloader from './components/common/Preloader/Preloader';
+
+export function withRouter(Children) {
+  return (props) => {
+     const match = { params: useParams()};
+  
+     return <Children {...props} match={match} />
+  }
+}
+
+class App extends React.Component{
+  componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
+
+    this.props.initializeApp()
+ }
+  render(){
+    if(!this.props.initialized){
+      return<Preloader/>
+    }
 
 
-
-
-
-function App(props) {
   return (
     <BrowserRouter>
       <div className="app-wrapper wrapper">
@@ -39,8 +59,12 @@ function App(props) {
     </BrowserRouter>
 
   );
+  }
+}
+const mapStateToProps=(state)=>{
+ return{initialized:state.app.initialized}
 }
 
+export default compose(withRouter,connect(mapStateToProps, {initializeApp}))(App)
 
-export default App;
 
