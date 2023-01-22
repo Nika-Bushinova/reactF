@@ -1,8 +1,8 @@
-import axios from 'axios';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { compose } from 'redux';
+
 import { Field, reduxForm } from 'redux-form';
 import { Input } from '../common/formsControls';
 import { required } from '../validators/validator';
@@ -20,7 +20,7 @@ const LoginForm = (props) => {//п.2 вызовется хэндлсабмит, 
             <Field placeholder='password' name='password' type='password'component={Input} validate={[required]}></Field>
          </div>
          <div>
-            <Field type={'checkbox'} name='rememberMe' component={Input}  validate={[required]}/>Remember me
+            <Field type={'checkbox'} name='rememberMe' component={Input} />Remember me
          </div>
          <div>
          {props.error?<span className={classes._error}>{props.error}</span>:''}

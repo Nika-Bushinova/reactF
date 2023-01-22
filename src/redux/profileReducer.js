@@ -1,4 +1,4 @@
-import { useTransition } from "react"
+
 import { ProfileAPI } from "../API/APIJS"
 
 const addPost = 'ADD-POST'
@@ -96,7 +96,7 @@ export const getDataThunkCreator = (userId) => {
    return (dispatch) => {
       if (!userId) { 
 
-         userId = this.props.loggedUser }
+         userId = /* this.props.loggedUser|| */27206 }
       ProfileAPI.getDatas(userId)
          .then((response) => {
 
