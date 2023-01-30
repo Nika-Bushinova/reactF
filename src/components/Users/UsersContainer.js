@@ -9,6 +9,7 @@ import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom"
 import ProfileContainer from "../Profile/ProfileContainer";
 import { withAuthRedirect } from "../../HOC/AuthRedirect";
 import { compose } from "redux";
+import { getcurrentPage, getfollowingInProgress, getisAuth, getisFetching, getpageSize, gettotalUserCount, getUsers } from "../../redux/usersSelectors";
 
 class UsersContainer extends React.Component {
    componentDidMount() {//нам нужно как-то данные с сервера через пропсы засунуть в state
@@ -43,13 +44,13 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
    return {
-      users: state.usersPage.users,
-      pageSize: state.usersPage.pageSize,
-      totalUserCount: state.usersPage.totalUserCount,
-      currentPage: state.usersPage.currentPage,
-      isFetching: state.usersPage.isFetching,
-      followingInProgress: state.usersPage.followingInProgress,
-      isAuth:state.auth.isAuth
+      users: getUsers(state),
+      pageSize: getpageSize(state),
+      totalUserCount: gettotalUserCount(state),
+      currentPage: getcurrentPage(state),
+      isFetching: getisFetching(state),
+      followingInProgress: getfollowingInProgress(state),
+      isAuth:getisAuth(state)
    }
 }
 
